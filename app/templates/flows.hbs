@@ -1,8 +1,9 @@
-flows.hbs
-{{outlet}}
-
+{{#link-to 'index'}}Home{{/link-to}}
+<h3 id='title'>Flows</h3>
 <ul>
   {{#each flow in content}}
-    <li>{{flow.name}}</li>
+    <li>{{#link-to 'flow' flow}}<b>{{flow.name}}</b> {{flow.description}}{{/link-to}}</li>
   {{/each}}
 </ul>
+
+{{outlet}}
