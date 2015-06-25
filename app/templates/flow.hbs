@@ -1,6 +1,6 @@
-<h3 id='title'>Flow {{name}}</h3>
+<h3 id='title'>{{content.name}}</h3>
 
-<div>description: {{description}}</div>
+<div>{{content.description}}</div>
 
 {{#ui-accordion class="styled"}}
   <div class="active title">
@@ -8,6 +8,11 @@
     Aktuelle Artikel
   </div>
   <div class="active content">
+
+    {{#each content.steps as |step|}}
+      <li>{{step.name}} AA</li>
+    {{/each}}
+
     <p>A</p>
     <p>B</p>
     <p>C</p>

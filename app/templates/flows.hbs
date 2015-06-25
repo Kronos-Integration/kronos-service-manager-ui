@@ -1,7 +1,7 @@
 {{#link-to 'index'}}Home{{/link-to}}
 <h3 id='title'>Flows</h3>
 <ul>
-  {{#each flow in content}}
+  {{#each content as |flow|}}
     <li>{{#link-to 'flow' flow}}<b>{{flow.name}}</b> {{flow.description}}{{/link-to}}</li>
   {{/each}}
 </ul>

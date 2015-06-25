@@ -1,7 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  model: function () {
+  model: function (id) {
+
+    console.log(`fetch: ${id}`);
     return {
       id: "flow3_id",
       name: "flow3",
