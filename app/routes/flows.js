@@ -9,9 +9,9 @@ export default Ember.Route.extend({
 
         const flows = data.map(function (f) {
           return {
-            id: f,
-            name: f,
-            description: `description ${f}`
+            id: f.id,
+            name: f.name,
+            description: f.description
           };
         });
 
