@@ -1,7 +1,23 @@
-<form {{action 'authenticate' on='submit'}}>
-  <label for="identification">Login</label>
-  {{input id='identification' placeholder='Enter Login' value=identification}}
-  <label for="password">Password</label>
-  {{input id='password' placeholder='Enter Password' type='password' value=password}}
-  <button type="submit">Login</button>
+<form class="ui form" {{action 'authenticate' on='submit'}}>
+  <h4 class="ui dividing header">Login</h4>
+  <div class="two fields">
+    <div class="required field">
+      <label>Username</label>
+      <div class="ui icon input">
+        {{input id='identification' placeholder='Enter Login' value=identification}}
+        <i class="user icon"></i>
+      </div>
+    </div>
+    <div class="required field">
+      <label>Password</label>
+      <div class="ui icon input">
+        {{input id='password' placeholder='Enter Password' type='password' value=password}}
+        <i class="lock icon"></i>
+      </div>
+    </div>
+  </div>
+  <div class="ui error message">
+    <div class="header">We noticed some issues</div>
+  </div>
+  <div class="ui submit button">Login</div>
 </form>

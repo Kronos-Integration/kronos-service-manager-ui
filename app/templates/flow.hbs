@@ -15,18 +15,24 @@
           <a class="header">{{step.name}}</a>
           <div class="description">{{step.description}}</div>
           <div class="description">{{step.type}}</div>
-          <div class="list">
+          <div class="ui bulleted list">
           {{#each step.endpoints as |endpoint|}}
             <div class="item">
-              {{endpoint.name}}
-              <a class="description">{{endpoint.description}}</a>
-              <div class="item">
+              <div class="content">
+                <a class="header">{{endpoint.name}}</a>
+                <a class="description">{{endpoint.description}}</a>
                 <div class="item">
-              {{endpoint.uti}}
-              </div>
-
-              {{endpoint.mandatory}} {{endpoint.direction}}
-              {{endpoint.target}}
+                  <div class="item">
+                    {{endpoint.target}}
+                  </div>
+                  {{endpoint.direction}}
+                  <div class="ui label">
+                    {{#if endpoint.mandatory}}
+                      <i class="asterisk icon"/>
+                    {{/if}}
+                    {{endpoint.uti}}
+                  </div>
+                </div>
               </div>
             </div>
           {{/each}}
