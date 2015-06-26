@@ -9,11 +9,18 @@ export default Ember.Route.extend({
         const steps = [];
 
         for(let s in data.steps) {
-          steps.push(data.steps[s]);
+          const step = data.steps[s];
+          const endpoints = [];
+
+          for(let e in step.endpoints) {
+            endpoints.push(step.endpoints[e]);
+          }
+          step.endpoints = endpoints;
+          steps.push(step);
         }
         data.steps = steps;
 
-        console.log(`response: ${JSON.stringify(data)}`);
+        //console.log(`response: ${JSON.stringify(data)}`);
         return data;
       });
     });
