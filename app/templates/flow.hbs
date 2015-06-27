@@ -25,7 +25,12 @@
                   <div class="item">
                     {{endpoint.target}}
                   </div>
-                  {{endpoint.direction}}
+                  {{#if endpoint.isIn}}
+                    <i class="arrow left icon"></i>
+                  {{/if}}
+                  {{#if endpoint.isOut}}
+                    <i class="arrow right icon"></i>
+                  {{/if}}
                   <div class="ui label">
                     {{#if endpoint.mandatory}}
                       <i class="asterisk icon"/>

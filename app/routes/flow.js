@@ -13,7 +13,11 @@ export default Ember.Route.extend({
           const endpoints = [];
 
           for(let e in step.endpoints) {
-            endpoints.push(step.endpoints[e]);
+            const ep = step.endpoints[e];
+            ep.isIn = ep.direction.match(/in/) ? true : false;
+            ep.isOut = ep.direction.match(/out/) ? true : false;
+
+            endpoints.push(ep);
           }
           step.endpoints = endpoints;
           steps.push(step);
