@@ -10,4 +10,5 @@ export default Router.map(function () {
   this.route('flow', { path: '/flows/:flow_id' });
 
   this.route('login');
+  this.route('status');
 });
