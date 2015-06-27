@@ -1,7 +1,22 @@
 <h3 id='title'>State</h3>
-<ul>
-  <li>{{content.platform}}</li>
-  <li>{{content.uptime}}</li>
-</ul>
 
-{{outlet}}
+<table class="ui table">
+  <tbody>
+    <tr>
+      <td>platform</td>
+      <td>{{content.platform}}</td>
+    </tr>
+    <tr>
+      <td>uptime</td>
+      <td>{{content.uptime}}</td>
+    </tr>
+    <tr>
+      <td>node</td>
+      <td>{{content.versions.node}}</td>
+    </tr>
+    <tr>
+      <td>memory</td>
+      <td>{{content.memory.rss}} {{content.memory.heapTotal}} {{content.memory.heapUsed}}</td>
+    </tr>
+  </tbody>
+</table>

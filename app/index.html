@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Kronos</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Kronos Manager">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
     {{content-for 'head'}}
 
@@ -15,7 +15,9 @@
     {{content-for 'head-footer'}}
   </head>
   <body>
-    {{content-for 'body'}}
+    <div class="container">
+      {{content-for 'body'}}
+    </div>
 
     <script src="assets/vendor.js"></script>
     <script src="assets/kronos-service-manager-ui.js"></script>
