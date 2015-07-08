@@ -1,6 +1,6 @@
 /* jshint node: true */
 
-module.exports = function (environment) {
+module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'kronos-service-manager-ui',
     environment: environment,
