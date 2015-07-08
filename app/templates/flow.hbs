@@ -52,6 +52,15 @@
     Endpoints
   </div>
   <div class="content">
-    <p>1 x A</p>
+    <svg width="4cm" height="4cm" viewBox="0 0 400 400"
+         xmlns="http://www.w3.org/2000/svg" version="1.1">
+
+    {{#each content.steps as |step|}}
+      <text class="Label" x="20" y={{step.y}}>{{step.name}}</text>
+      <rect x={{step.x}} y={{step.y}} width="90" height="90"
+            fill="none" stroke="blue" />
+    {{/each}}
+
+    </svg>
   </div>
 {{/ui-accordion}}
