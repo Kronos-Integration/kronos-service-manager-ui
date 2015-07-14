@@ -1,4 +1,8 @@
 
+.draggable {
+  cursor: move;
+}
+
 .shape {
   stroke:black;
   stroke-width:2px;
