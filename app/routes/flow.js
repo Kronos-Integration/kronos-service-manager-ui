@@ -15,6 +15,7 @@ export default Ember.Route.extend({
               const targetStep = m[1];
               const targetEndpoint = m[2];
               ep.counterpart = data.steps[targetStep].endpoints[targetEndpoint];
+              ep.counterpart.counterpart = ep;
             }
           }
         }
@@ -40,8 +41,7 @@ export default Ember.Route.extend({
           step.x = x;
           step.y = y;
           step.w = stepW;
-          step.tx = x + endpointOffset * 2;
-          step.ty = y + endpointOffset * 2;
+          step.tx = x + stepW / 2;
 
           let nIn = 0, nOut = 0;
 
@@ -51,21 +51,20 @@ export default Ember.Route.extend({
             ep.isIn = ep.direction.match(/in/) ? true : false;
             if(ep.isIn) {
               ep.x = x + endpointOffset;
-              ep.y = y + endpointOffset + nIn * endpointOffset;
-              nIn++;
+              ep.y = y + endpointOffset + nIn++ * endpointOffset;
             }
 
             ep.isOut = ep.direction.match(/out/) ? true : false;
             if(ep.isOut) {
               ep.x = x + stepW - endpointOffset;
-              ep.y = y + endpointOffset + nOut * endpointOffset;
-              nOut++;
+              ep.y = y + endpointOffset + nOut++ * endpointOffset;
             }
 
             endpoints.push(ep);
           }
 
           step.h = ((nIn > nOut ? nIn : nOut) + 1) * endpointOffset;
+          step.ty = y + step.h / 2 + 5;
 
           step.endpoints = endpoints;
           steps.push(step);
