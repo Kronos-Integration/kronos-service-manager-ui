@@ -1,0 +1,54 @@
+<h3 id='title'>{{content.name}}</h3>
+
+<div>{{content.description}}</div>
+
+{{#ui-accordion class="styled"}}
+  <div class="active title">
+    <i class="dropdown icon"></i>
+    Steps
+  </div>
+  <div class="active content">
+    <div class="ui divided list">
+      {{#each content.steps as |step|}}
+      <div class="item">
+        <div class="content">
+          <a class="header">{{step.name}}</a>
+          <div class="description">{{step.description}}</div>
+          <div class="description">{{step.type}}</div>
+          <div class="ui bulleted list">
+          {{#each step.endpoints as |endpoint|}}
+            <div class="item">
+              <div class="content">
+                <a class="header">{{endpoint.name}}</a>
+                <a class="description">{{endpoint.description}}</a>
+                <div class="item">
+                  <div class="item">
+                    {{endpoint.target}}
+                  </div>
+                  {{#if endpoint.isIn}}
+                    <i class="arrow left icon"></i>
+                  {{/if}}
+                  {{#if endpoint.isOut}}
+                    <i class="arrow right icon"></i>
+                  {{/if}}
+                  <div class="ui label">
+                    {{#if endpoint.mandatory}}
+                      <i class="asterisk icon"/>
+                    {{/if}}
+                    {{endpoint.uti}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {{/each}}
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+  <div class="title">
+    <i class="dropdown icon"></i>
+    Endpoints
+  </div>
+{{/ui-accordion}}

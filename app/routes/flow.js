@@ -21,8 +21,17 @@ export default Ember.Route.extend({
 
         const steps = [];
 
-        let y = 150;
-        let x = 150;
+        const originX = 10;
+        const originY = 10;
+
+        const stepW = 60;
+        const stepH = 40;
+
+        const stepOffset = 12;
+        const endpointOffset = 12;
+
+        let x = originX;
+        let y = originY;
 
         for(let s in data.steps) {
           const step = data.steps[s];
@@ -30,30 +39,42 @@ export default Ember.Route.extend({
 
           step.x = x;
           step.y = y;
-          step.w = 80;
-          step.h = 50;
-          step.tx = x + 30;
-          step.ty = y + 30;
+          step.w = stepW;
+          step.tx = x + endpointOffset * 2;
+          step.ty = y + endpointOffset * 2;
 
-          let n = 0;
+          let nIn = 0, nOut = 0;
+
           for(let e in step.endpoints) {
             const ep = step.endpoints[e];
-            ep.isIn = ep.direction.match(/in/) ? true : false;
-            ep.isOut = ep.direction.match(/out/) ? true : false;
 
-            ep.x = x + (ep.isOut ? 70 : 10);
-            ep.y = y + 20 + n * 15;
-            n++;
+            ep.isIn = ep.direction.match(/in/) ? true : false;
+            if(ep.isIn) {
+              ep.x = x + endpointOffset;
+              ep.y = y + endpointOffset + nIn * endpointOffset;
+              nIn++;
+            }
+
+            ep.isOut = ep.direction.match(/out/) ? true : false;
+            if(ep.isOut) {
+              ep.x = x + stepW - endpointOffset;
+              ep.y = y + endpointOffset + nOut * endpointOffset;
+              nOut++;
+            }
+
             endpoints.push(ep);
           }
+
+          step.h = ((nIn > nOut ? nIn : nOut) + 1) * endpointOffset;
+
           step.endpoints = endpoints;
           steps.push(step);
 
-          y += 60;
+          y += step.h + stepOffset;
 
-          if(y > 250) {
-            x += 150;
-            y = 150;
+          if(y > originY + 4 * stepH) {
+            x += stepW + stepOffset;
+            y = originY;
           }
         }
         data.steps = steps;
