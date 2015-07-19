@@ -35,6 +35,7 @@
     "ember-export-application-global": "^1.0.2",
     "ember-fetch": "1.2.1",
     "ember-moment": "1.2.1",
+    "ember-websockets": "1.2.2",
     "semantic-ui-ember": "git+ssh://github.com/Semantic-Org/Semantic-UI-Ember.git"
   }
 }

@@ -12,6 +12,7 @@
     "loader.js": "ember-cli/loader.js#3.2.0",
     "qunit": "~1.17.1",
     "semantic-ui": "~1.12.3",
-    "ember-cli-moment-shim": "~0.2.0"
+    "ember-cli-moment-shim": "~0.2.0",
+    "uri.js": "~1.15.2"
   }
 }
