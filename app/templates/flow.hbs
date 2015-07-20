@@ -19,7 +19,8 @@
     <rect width={{step.w}} height={{step.h}} x={{step.x}} y={{step.y}} rx="9" ry="9" id={{step.name}}
       class="step draggable" {{action 'drag' step}}/>
     <text class="tLabel" x={{step.x}} y={{step.y}}>
-      <tspan class="stepLabel" x={{step.tx}} y={{step.ty}}>{{step.name}}</tspan>
+      <tspan class="stepType" x={{step.tx}} y={{step.ty}}>{{step.type}}</tspan>
+      <tspan class="stepLabel" x={{step.nx}} y={{step.ny}}>{{step.name}}</tspan>
      </text>
   {{/each}}
   {{#each content.steps as |step|}}

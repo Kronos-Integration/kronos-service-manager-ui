@@ -47,6 +47,13 @@
   font-family:DejaVu Sans;
 }
 
+.stepType {
+  font-size:10px;
+  fill:black;
+  fill-opacity:0.5;
+  font-family:DejaVu Sans;
+}
+
 .frLabel {
   font-size:12px;
   fill:black;
