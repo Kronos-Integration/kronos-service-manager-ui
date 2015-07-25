@@ -1,13 +1,17 @@
 import Ember from 'ember';
 import fetch from 'fetch';
 
+import Flow from 'kronos-service-manager-ui/models/Flow';
+import Step from 'kronos-service-manager-ui/models/Step';
+import Endpoint from 'kronos-service-manager-ui/models/Endpoint';
+
 export default Ember.Route.extend({
   model: function (params) {
     return fetch(`flows/${params.flow_id}`).then((response) => {
       return response.json().then((data) => {
 
         for (let s in data.steps) {
-          const step = data.steps[s];
+          const step = Step.create(data.steps[s]);
           for (let e in step.endpoints) {
             const ep = step.endpoints[e];
             const m = ep.target.match(/^step:([^/]+)\/(.+)/);

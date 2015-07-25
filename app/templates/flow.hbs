@@ -10,10 +10,18 @@
       <marker id="connectorCircle" markerWidth="8" markerHeight="8" refX="5" refY="5">
         <circle cx="5" cy="5" r="3" style="stroke: none; fill:#000000;"/>
       </marker>
-      <marker id="connectorArrow" markerWidth="13" markerHeight="13" refX="2" refY="6" orient="auto">
-        <path d="M2,2 L2,11 L10,6 L2,2" style="fill: #000000;"/>
+      <marker
+         orient="auto"
+         refX="7.5"
+         refY="0"
+         id="connectorArrow"
+         style="overflow:visible">
+        <path
+           d="M 0,0 L 1,-5 L -12.5,0 L 1,5 L 0,0 z"
+           style="fill-rule:evenodd;stroke:#000000;stroke-width:1px;marker-start:none"
+           transform="scale(-0.6,-0.6)"/>
       </marker>
-    </defs>
+      </defs>
 
   {{#each content.steps as |step|}}
     <rect width={{step.w}} height={{step.h}} x={{step.x}} y={{step.y}} rx="9" ry="9" id={{step.name}}
