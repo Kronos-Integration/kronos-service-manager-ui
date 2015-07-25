@@ -5,5 +5,6 @@ export default Ember.Object.extend({
   y : 0,
   w : 0,
   h : 0,
-  endpoints: []
+  endpoints: [],
+  type: "nop"
 });

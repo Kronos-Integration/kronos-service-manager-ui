@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Object.extend({
-  name : "unknamed",
+  name : "unamed",
   steps: []
 });
