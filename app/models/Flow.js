@@ -3,7 +3,8 @@ import Ember from 'ember';
 //import Endpoint from 'kronos-service-manager-ui/models/Endpoint';
 
 export default Ember.Object.extend({
-  name: "unamed",
-  state: "unknown",
-  steps: []
+  name: "",
+  description: "",
+  state: "",
+  steps: undefined
 });

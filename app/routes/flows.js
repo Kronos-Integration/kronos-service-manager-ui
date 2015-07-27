@@ -1,6 +1,9 @@
 import Ember from 'ember';
-import fetch from 'fetch';
+
+import Util from 'kronos-service-manager-ui/models/Util';
 
 export default Ember.Route.extend({
-  model: () => fetch('flows').then((response) => response.json())
+    model: function () {
+      return Util.allFlows();
+    }
 });

@@ -1,9 +1,47 @@
 //import Ember from 'ember';
+import fetch from 'fetch';
+
 import Step from 'kronos-service-manager-ui/models/Step';
 //import Endpoint from 'kronos-service-manager-ui/models/Endpoint';
 import Flow from 'kronos-service-manager-ui/models/Flow';
 
+const flowsArray = [];
+const flowsById = {};
+
+export function allFlows() {
+  if(flowsArray.length > 0) { return flowsArray; }
+
+  return fetch('flows').then((response) => response.json().then((json) => createFlowsFromJSON(
+    json)));
+}
+
+export function getFlow(id) {
+  const flow = flowsById[id];
+  if(flow) {
+    if(flow.steps) {
+      return flow;
+    }
+  }
+
+  return fetch(`flows/${id}`).then((response) => response.json().then((json) => createFromJSON(
+    json)));
+}
+
+export function createFlowsFromJSON(json) {
+  //console.log(`createFlowsFromJSON: ${JSON.stringify(json)}`);
+
+  json.forEach( e => {
+    //console.log(`createFlowsFromJSON each: ${JSON.stringify(e)}`);
+    const flow = Flow.create(e);
+    flowsArray.push(flow);
+    flowsById[flow.id] = flow;
+    });
+
+  return flowsArray;
+}
+
 export function createFromJSON(data) {
+  console.log(`createFromJSON: ${JSON.stringify(data)}`);
 
   const steps = [];
 
@@ -23,10 +61,18 @@ export function createFromJSON(data) {
     }
   }
 
-  const flow = Flow.create({
-    id: data.id,
-    name: data.name
-  });
+  let flow;
+
+  if(flow = flowsById[data.id]) {
+  }
+  else {
+    flow = Flow.create({
+      id: data.id,
+      name: data.name
+    });
+    flowsById[flow.id] = flow;
+    flowsArray.push(flow);
+  }
 
   const originX = 10;
   const originY = 10;
