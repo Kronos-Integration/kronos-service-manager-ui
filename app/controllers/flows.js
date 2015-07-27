@@ -1,12 +1,30 @@
 import Ember from 'ember';
 
+import Util from 'kronos-service-manager-ui/models/Util';
+
 export default Ember.Controller.extend({
+  socketService: Ember.inject.service('websockets'),
+  init: function () {
+    this._super.apply(this, arguments);
+
+    const location = `ws://${window.location.host}/flows`;
+    const socket = this.get('socketService').socketFor(location);
+
+    socket.on('message', function (event) {
+      const data = JSON.parse(event.data);
+      console.log(`message: ${JSON.stringify(data)}`);
+    }, this);
+    socket.on('close', function () {
+      console.log('close');
+    }, this);
+  },
+
   actions: {
     "delete": function(flow) {
-      console.log(`delete: ${flow.name}`);
+      Util.deleteFlow(flow.id);
     },
     pause: function(flow) {
-      console.log(`pause: ${flow.name}`);
+      Util.pauseFlow(flow.id);
     }
   }
 });
