@@ -1,8 +1,25 @@
-<h3 id='title'>Flows</h3>
-<ul>
-  {{#each content as |flow|}}
-    <li>{{#link-to 'flow' flow}}<b>{{flow.name}}</b> {{flow.description}}{{/link-to}}</li>
-  {{/each}}
-</ul>
+<div class="content">
+  <h3 id='title'>Flows</h3>
 
+<div class="ui relaxed celled list">
+  {{#each content as |flow|}}
+  <div class="item">
+    <div class="right floated content">
+      <button class="ui small labeled icon button">
+        <i class="pause icon"></i>
+        Pause
+      </button>
+      <button class="ui small negative labeled button">
+        Delete
+      </button>
+    </div>
+    <i class="large github middle aligned icon"></i>
+    <div class="content">
+      {{#link-to 'flow' flow class="header"}} {{flow.name}} {{/link-to}}
+      <div class="description">{{flow.description}}</div>
+    </div>
+  </div>
+  {{/each}}
+</div>
+</div>
 {{outlet}}
