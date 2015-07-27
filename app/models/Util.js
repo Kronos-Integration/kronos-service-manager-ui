@@ -1,0 +1,92 @@
+//import Ember from 'ember';
+import Step from 'kronos-service-manager-ui/models/Step';
+//import Endpoint from 'kronos-service-manager-ui/models/Endpoint';
+import Flow from 'kronos-service-manager-ui/models/Flow';
+
+export function createFromJSON(data) {
+
+  const steps = [];
+
+  for (let s in data.steps) {
+    const step = Step.create(data.steps[s]);
+    steps.push(step);
+
+    for (let e in step.endpoints) {
+      const ep = step.endpoints[e];
+      const m = ep.target.match(/^step:([^/]+)\/(.+)/);
+      if (m) {
+        const targetStep = m[1];
+        const targetEndpoint = m[2];
+        ep.counterpart = data.steps[targetStep].endpoints[targetEndpoint];
+        ep.counterpart.counterpart = ep;
+      }
+    }
+  }
+
+  const flow = Flow.create({
+    id: data.id,
+    name: data.name
+  });
+
+  const originX = 10;
+  const originY = 10;
+
+  const stepW = 60;
+  const stepH = 40;
+
+  const stepOffset = 12;
+  const endpointOffset = 12;
+
+  let x = originX;
+  let y = originY;
+
+  for (let s in data.steps) {
+    const step = data.steps[s];
+    const endpoints = [];
+
+    step.x = x;
+    step.y = y;
+    step.w = stepW;
+    step.nx = x + stepW / 2;
+    step.tx = x + stepW / 2;
+
+    let nIn = 0,
+      nOut = 0;
+
+    for (let e in step.endpoints) {
+      const ep = step.endpoints[e];
+
+      ep.isIn = ep.direction.match(/in/) ? true : false;
+      if (ep.isIn) {
+        ep.x = x + endpointOffset;
+        ep.y = y + endpointOffset + nIn++ * endpointOffset;
+      }
+
+      ep.isOut = ep.direction.match(/out/) ? true : false;
+      if (ep.isOut) {
+        ep.x = x + stepW - endpointOffset;
+        ep.y = y + endpointOffset + nOut++ * endpointOffset;
+      }
+
+      endpoints.push(ep);
+    }
+
+    step.h = ((nIn > nOut ? nIn : nOut) + 1) * endpointOffset;
+    step.ny = y + step.h / 2 + 5;
+    step.ty = y + 10;
+
+    step.endpoints = endpoints;
+    steps.push(step);
+
+    y += step.h + stepOffset;
+
+    if (y > originY + 4 * stepH) {
+      x += stepW + stepOffset;
+      y = originY;
+    }
+  }
+
+  flow.steps = steps;
+
+  return flow;
+}
