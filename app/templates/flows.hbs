@@ -5,11 +5,11 @@
   {{#each content as |flow|}}
   <div class="item">
     <div class="right floated content">
-      <button class="ui small labeled icon button">
+      <button class="ui small labeled icon button" {{action 'pause' flow}}>
         <i class="pause icon"></i>
         Pause
       </button>
-      <button class="ui small negative labeled button">
+      <button class="ui small negative labeled button" {{action 'delete' flow}}>
         Delete
       </button>
     </div>
