@@ -9,7 +9,9 @@ const flowsArray = [];
 const flowsById = {};
 
 export function allFlows() {
-  if(flowsArray.length > 0) { return flowsArray; }
+  if (flowsArray.length > 0) {
+    return flowsArray;
+  }
 
   return fetch('flows').then((response) => response.json().then((json) => createFlowsFromJSON(
     json)));
@@ -17,8 +19,8 @@ export function allFlows() {
 
 export function getFlow(id) {
   const flow = flowsById[id];
-  if(flow) {
-    if(flow.steps) {
+  if (flow) {
+    if (flow.steps) {
       return flow;
     }
   }
@@ -28,15 +30,20 @@ export function getFlow(id) {
 }
 
 export function createFlow(json) {
-  return fetch('flows', { method: 'POST', body: JSON.stringify(json) }).then((response) => response.json().then(json => {
+  return fetch('flows', {
+    method: 'POST',
+    body: JSON.stringify(json)
+  }).then((response) => response.json().then(json => {
     console.log(`created: ${JSON.stringify(json)}`);
-    }));
+  }));
 }
 
 export function deleteFlow(id) {
-  return fetch(`flows/${id}`, { method: 'DELETE' }).then((response) => response.json().then(json => {
+  return fetch(`flows/${id}`, {
+    method: 'DELETE'
+  }).then((response) => response.json().then(json => {
     //console.log(`deleted: ${JSON.stringify(json)}`);
-    }));
+  }));
 }
 
 export function pauseFlow(id) {
@@ -47,12 +54,12 @@ export function pauseFlow(id) {
 export function createFlowsFromJSON(json) {
   //console.log(`createFlowsFromJSON: ${JSON.stringify(json)}`);
 
-  json.forEach( e => {
+  json.forEach(e => {
     //console.log(`createFlowsFromJSON each: ${JSON.stringify(e)}`);
     const flow = Flow.create(e);
     flowsArray.push(flow);
     flowsById[flow.id] = flow;
-    });
+  });
 
   return flowsArray;
 }
@@ -80,9 +87,7 @@ export function createFromJSON(data) {
 
   let flow;
 
-  if(flow = flowsById[data.id]) {
-  }
-  else {
+  if (flow = flowsById[data.id]) {} else {
     flow = Flow.create({
       id: data.id,
       name: data.name

@@ -27,7 +27,15 @@ export default Ember.Controller.extend({
       Util.pauseFlow(flow.id);
     },
     create: function() {
-      Util.createFlow({ "newFlow" : { "steps" : { } }});
+      const files = document.getElementById('file').files;
+      const file = files[0];
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        Util.createFlow(JSON.parse(reader.result));
+      };
+
+      reader.readAsText(file);
     }
   }
 });
