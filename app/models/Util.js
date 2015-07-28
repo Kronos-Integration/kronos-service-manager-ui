@@ -27,8 +27,14 @@ export function getFlow(id) {
     json)));
 }
 
+export function createFlow(json) {
+  return fetch('flows', { method: 'POST', body: JSON.stringify(json) }).then((response) => response.json().then(json => {
+    console.log(`created: ${JSON.stringify(json)}`);
+    }));
+}
+
 export function deleteFlow(id) {
-  return fetch(`flows/${id}`, { method: 'DELETE'}).then((response) => response.json().then(json => {
+  return fetch(`flows/${id}`, { method: 'DELETE' }).then((response) => response.json().then(json => {
     //console.log(`deleted: ${JSON.stringify(json)}`);
     }));
 }

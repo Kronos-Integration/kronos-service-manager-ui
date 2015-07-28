@@ -27,7 +27,7 @@ export default Ember.Controller.extend({
       Util.pauseFlow(flow.id);
     },
     create: function() {
-      console.log('create');
+      Util.createFlow({ "newFlow" : { "steps" : { } }});
     }
   }
 });
