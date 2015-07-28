@@ -25,6 +25,9 @@ export default Ember.Controller.extend({
     },
     pause: function(flow) {
       Util.pauseFlow(flow.id);
+    },
+    create: function() {
+      console.log('create');
     }
   }
 });
