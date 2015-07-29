@@ -12,7 +12,10 @@ export default Ember.Controller.extend({
 
     socket.on('message', function (event) {
       const data = JSON.parse(event.data);
-      console.log(`Got message: ${JSON.stringify(data)}`);
+      //console.log(`Got message: ${JSON.stringify(data)}`);
+      if(data.type === 'flowDeleted') {
+        Util.deleteFlowLocally(data.flow);
+      }
     }, this);
     socket.on('close', function () {
       console.log('close');

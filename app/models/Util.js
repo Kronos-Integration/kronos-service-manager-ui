@@ -38,6 +38,15 @@ export function createFlow(json) {
   }));
 }
 
+export function deleteFlowLocally(id) {
+  delete flowsById[id];
+  const index = flowsArray.findIndex( (flow) => flow.id === id);
+  if(index >= 0) {
+    //console.log(`splice: ${index}`);
+    flowsArray.splice(index,1);
+  }
+}
+
 export function deleteFlow(id) {
   return fetch(`flows/${id}`, {
     method: 'DELETE'
