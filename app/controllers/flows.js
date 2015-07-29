@@ -12,7 +12,7 @@ export default Ember.Controller.extend({
 
     socket.on('message', function (event) {
       const data = JSON.parse(event.data);
-      console.log(`message: ${JSON.stringify(data)}`);
+      console.log(`Got message: ${JSON.stringify(data)}`);
     }, this);
     socket.on('close', function () {
       console.log('close');
@@ -31,7 +31,7 @@ export default Ember.Controller.extend({
       const file = files[0];
 
       const reader = new FileReader();
-      reader.onload = function(e) {
+      reader.onload = function() {
         Util.createFlow(JSON.parse(reader.result));
       };
 
