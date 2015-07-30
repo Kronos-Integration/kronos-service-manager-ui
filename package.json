@@ -38,6 +38,6 @@
     "ember-fetch": "1.2.1",
     "ember-moment": "3.2.0",
     "ember-websockets": "1.2.2",
-    "semantic-ui-ember": "git+ssh://github.com/Semantic-Org/Semantic-UI-Ember.git"
+    "semantic-ui-ember": "git+https://github.com/Semantic-Org/Semantic-UI-Ember.git"
   }
 }
