@@ -16,5 +16,8 @@
     "uri.js": "~1.15.2",
     "moment": ">= 2.8.0",
     "moment-timezone": ">= 0.1.0"
+  },
+  "resolutions": {
+    "ember": "2.0.0-beta.4"
   }
 }
