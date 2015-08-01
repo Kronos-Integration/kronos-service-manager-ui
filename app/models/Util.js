@@ -51,7 +51,7 @@ export function deleteFlow(id) {
   return fetch(`flows/${id}`, {
     method: 'DELETE'
   }).then((response) => response.json().then(json => {
-    //console.log(`deleted: ${JSON.stringify(json)}`);
+    console.log(`deleted: ${JSON.stringify(json)}`);
   }));
 }
 
