@@ -65,6 +65,7 @@ export function createFlowsFromJSON(json) {
 
   json.forEach(e => {
     //console.log(`createFlowsFromJSON each: ${JSON.stringify(e)}`);
+    e.id = e.url;
     const flow = Flow.create(e);
     flowsArray.push(flow);
     flowsById[flow.id] = flow;
