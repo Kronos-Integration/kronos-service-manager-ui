@@ -1,34 +1,38 @@
 <h3 id='title'>State</h3>
 
-<table class="ui table">
+<table class="ui celled striped table">
   <tbody>
     <tr>
       <td>Name</td>
       <td>{{content.name}}</td>
     </tr>
     <tr>
-      <td>platform</td>
+      <td>Platform</td>
       <td>{{content.platform}}</td>
     </tr>
     <tr>
-      <td>uptime</td>
+      <td>Running since</td>
       <td>{{duration content.uptime}}</td>
     </tr>
     <tr>
-      <td>node version</td>
+      <td>Node Version</td>
       <td>{{content.versions.node}}</td>
     </tr>
     <tr>
-      <td>rss</td>
+      <td>RSS</td>
       <td>{{content.memory.rss}}</td>
     </tr>
     <tr>
-      <td>heapTotal</td>
+      <td>Heap Total</td>
       <td>{{content.memory.heapTotal}}</td>
     </tr>
     <tr>
-      <td>heapUsed</td>
+      <td>Heap Used</td>
       <td>{{content.memory.heapUsed}}</td>
+    </tr>
+    <tr>
+      <td>Connected</td>
+      <td>{{#if content.connected}}<i class="large green checkmark icon"></i>{{else}}<i class="large red attention icon"></i>{{/if}}</td>
     </tr>
   </tbody>
 </table>

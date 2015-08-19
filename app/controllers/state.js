@@ -9,18 +9,18 @@ export default Ember.Controller.extend({
     const location = `ws://${window.location.host}/state`;
     const socket = this.get('socketService').socketFor(location);
 
+    socket.on('open', function() {
+      this.set('content.connected',true);
+      }, this);
+    socket.on('close', function () {
+      this.set('content.connected',false);
+      }, this);
     socket.on('message', function (event) {
       const data = JSON.parse(event.data);
-      console.log(`uptime: ${data.uptime}`);
-
-      this.set('uptime', data.uptime);
-      /*
-      this.set('memory.heapTotal',data.memory.heapTotal);
-      this.set('memory.heapUsed',data.memory.heapUsed);
-      */
-    }, this);
-    socket.on('close', function () {
-      console.log('close');
+      this.set('content.uptime', data.uptime);
+      this.set('content.memory.heapTotal',data.memory.heapTotal);
+      this.set('content.memory.heapUsed',data.memory.heapUsed);
+      this.set('content.memory.rss',data.memory.rss);
     }, this);
   }
 });
