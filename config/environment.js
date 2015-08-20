@@ -16,8 +16,26 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+    contentSecurityPolicy: {
+        'default-src': "'none'",
+        'script-src': "'self'",
+        'font-src': "'self' 'unsafe-inline' https://fonts.gstatic.com/ data:",
+        'connect-src': "'self' http://localhost:3001", // Allow data (ajax/websocket) from http://localhost:3001
+        'img-src': "'self'",
+        'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com/", // Allow inline styles
+        'media-src': "'self'"
     }
   };
+
+/*
+  ENV['simple-auth'] = {
+          store: 'simple-auth-session-store:local-storage',
+          authorizer: 'authorizer:custom',
+          crossOriginWhitelist: ['http://localhost:3001/'],
+          routeAfterAuthentication: '/protected'
+      };
+*/
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
