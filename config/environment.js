@@ -21,7 +21,7 @@ module.exports = function(environment) {
         'default-src': "'none'",
         'script-src': "'self'",
         'font-src': "'self' 'unsafe-inline' https://fonts.gstatic.com/ data:",
-        'connect-src': "'self' http://localhost:3001", // Allow data (ajax/websocket) from http://localhost:3001
+        'connect-src': "'self' ws://localhost:49154 ws://localhost:4200", // Allow data (ajax/websocket) from http://localhost:3001
         'img-src': "'self'",
         'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com/", // Allow inline styles
         'media-src': "'self'"
