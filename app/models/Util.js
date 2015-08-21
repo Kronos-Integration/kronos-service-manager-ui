@@ -56,7 +56,19 @@ export function deleteFlow(id) {
 }
 
 export function pauseFlow(id) {
-  console.log(`pauseFlow: ${id}`);
+  return fetch(`flows/${id}/pause`, {
+    method: 'POST'
+  }).then((response) => response.json().then(json => {
+    console.log(`pause: ${JSON.stringify(json)}`);
+  }));
+}
+
+export function startFlow(id) {
+  return fetch(`flows/${id}/start`, {
+    method: 'POST'
+  }).then((response) => response.json().then(json => {
+    console.log(`start: ${JSON.stringify(json)}`);
+  }));
 }
 
 
@@ -75,7 +87,7 @@ export function createFlowsFromJSON(json) {
 }
 
 export function createFromJSON(data) {
-  console.log(`createFromJSON: ${JSON.stringify(data)}`);
+  //console.log(`createFromJSON: ${JSON.stringify(data)}`);
 
   const steps = [];
 
