@@ -40,10 +40,10 @@ export function createFlow(json) {
 
 export function deleteFlowLocally(id) {
   delete flowsById[id];
-  const index = flowsArray.findIndex( (flow) => flow.id === id);
-  if(index >= 0) {
+  const index = flowsArray.findIndex((flow) => flow.id === id);
+  if (index >= 0) {
     //console.log(`splice: ${index}`);
-    flowsArray.splice(index,1);
+    flowsArray.splice(index, 1);
   }
 }
 
@@ -55,11 +55,11 @@ export function deleteFlow(id) {
   }));
 }
 
-export function pauseFlow(id) {
-  return fetch(`flows/${id}/pause`, {
+export function stopFlow(id) {
+  return fetch(`flows/${id}/stop`, {
     method: 'POST'
   }).then((response) => response.json().then(json => {
-    console.log(`pause: ${JSON.stringify(json)}`);
+    console.log(`stop: ${JSON.stringify(json)}`);
   }));
 }
 
@@ -87,7 +87,7 @@ export function createFlowsFromJSON(json) {
 }
 
 export function createFromJSON(data) {
-  //console.log(`createFromJSON: ${JSON.stringify(data)}`);
+  console.log(`createFromJSON: ${JSON.stringify(data)}`);
 
   const steps = [];
 

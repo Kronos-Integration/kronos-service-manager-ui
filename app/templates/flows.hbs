@@ -6,9 +6,9 @@
   <div class="item">
     <div class="right floated content">
       {{#if flow.isRunning}}
-      <button class="ui small labeled icon button" {{action 'pause' flow}}>
+      <button class="ui small labeled icon button" {{action 'stop' flow}}>
         <i class="pause icon"></i>
-        Pause
+        Stop
       </button>
       {{/if}}
       <button class="ui small negative labeled button" {{action 'delete' flow}}>

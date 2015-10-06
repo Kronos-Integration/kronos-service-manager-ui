@@ -13,7 +13,7 @@ export default Ember.Controller.extend({
     socket.on('message', function (event) {
       const data = JSON.parse(event.data);
       //console.log(`Got message: ${JSON.stringify(data)}`);
-      if(data.type === 'flowDeleted') {
+      if (data.type === 'flowDeleted') {
         Util.deleteFlowLocally(data.flow);
       }
     }, this);
@@ -23,18 +23,21 @@ export default Ember.Controller.extend({
   },
 
   actions: {
-    "delete": function(flow) {
+    "delete": function (flow) {
       Util.deleteFlow(flow.id);
     },
-    pause: function(flow) {
-      Util.pauseFlow(flow.id);
+    stop: function (flow) {
+      Util.stopFlow(flow.id);
     },
-    create: function() {
+    start: function (flow) {
+      Util.startFlow(flow.id);
+    },
+    create: function () {
       const files = document.getElementById('file').files;
       const file = files[0];
 
       const reader = new FileReader();
-      reader.onload = function() {
+      reader.onload = function () {
         Util.createFlow(JSON.parse(reader.result));
       };
 
