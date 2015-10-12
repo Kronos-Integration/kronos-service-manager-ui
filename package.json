@@ -39,6 +39,6 @@
     "ember-export-application-global": "^1.0.3",
     "ember-fetch": "1.2.2",
     "ember-moment": "4.1.0",
-    "ember-websockets": "1.2.3"
+    "ember-websockets": "1.2.4"
   }
 }
