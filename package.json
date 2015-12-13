@@ -20,17 +20,19 @@
     "url": "https://github.com/Kronos-Integration/kronos-service-manager-ui/issues"
   },
   "homepage": "https://github.com/Kronos-Integration/kronos-service-manager-ui#readme",
-
   "engines": {
     "node": ">=4.2.1"
   },
-  "contributors": [{
-    "name": "Torsten Link",
-    "email": "torstenlink@gmx.de"
-  }, {
-    "name": "Markus Felten",
-    "email": "markus.felten@gmx.de"
-  }],
+  "contributors": [
+    {
+      "name": "Torsten Link",
+      "email": "torstenlink@gmx.de"
+    },
+    {
+      "name": "Markus Felten",
+      "email": "markus.felten@gmx.de"
+    }
+  ],
   "license": "BSD-2-Clause",
   "devDependencies": {
     "broccoli-asset-rev": "^2.2.0",
@@ -52,7 +54,7 @@
     "ember-disable-proxy-controllers": "^1.0.1",
     "ember-export-application-global": "^1.0.5",
     "ember-fetch": "1.2.2",
-    "ember-moment": "4.1.0",
+    "ember-moment": "4.2.1",
     "ember-websockets": "1.2.4"
   }
 }
