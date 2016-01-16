@@ -2,7 +2,6 @@
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/Kronos-Integration/kronos-service-manager-ui)
 [![Build Status](https://secure.travis-ci.org/Kronos-Integration/kronos-service-manager-ui.png)](http://travis-ci.org/Kronos-Integration/kronos-service-manager-ui)
 [![bithound](https://www.bithound.io/github/Kronos-Integration/kronos-service-manager-ui/badges/score.svg)](https://www.bithound.io/github/Kronos-Integration/kronos-service-manager-ui)
-[![Coverage Status](https://coveralls.io/repos/Kronos-Integration/kronos-service-manager-ui/badge.svg)](https://coveralls.io/r/Kronos-Integration/kronos-service-manager-ui)
 [![Code Climate](https://codeclimate.com/github/Kronos-Integration/kronos-service-manager-ui/badges/gpa.svg)](https://codeclimate.com/github/Kronos-Integration/kronos-service-manager-ui)
 [![GitHub Issues](https://img.shields.io/github/issues/Kronos-Integration/kronos-service-manager-ui.svg?style=flat-square)](https://github.com/Kronos-Integration/kronos-service-manager-ui/issues)
 [![Dependency Status](https://david-dm.org/Kronos-Integration/kronos-service-manager-ui.svg)](https://david-dm.org/Kronos-Integration/kronos-service-manager-ui)
