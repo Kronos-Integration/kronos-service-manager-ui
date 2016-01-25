@@ -2,7 +2,6 @@
   "name": "kronos-service-manager-ui",
   "version": "0.0.0",
   "description": "Small description for kronos-service-manager-ui goes here",
-  "private": true,
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -23,19 +22,16 @@
   "engines": {
     "node": ">=4.2.1"
   },
-  "contributors": [
-    {
-      "name": "Torsten Link",
-      "email": "torstenlink@gmx.de"
-    },
-    {
-      "name": "Markus Felten",
-      "email": "markus.felten@gmx.de"
-    }
-  ],
+  "contributors": [{
+    "name": "Torsten Link",
+    "email": "torstenlink@gmx.de"
+  }, {
+    "name": "Markus Felten",
+    "email": "markus.felten@gmx.de"
+  }],
   "license": "BSD-2-Clause",
   "devDependencies": {
-    "broccoli-asset-rev": "2.4.1",
+    "broccoli-asset-rev": "2.4.2",
     "ember-cli": "^2.2.0-beta.6",
     "ember-cli-app-version": "^1.0.0",
     "ember-cli-babel": "^5.1.6",
@@ -45,7 +41,7 @@
     "ember-cli-htmlbars-inline-precompile": "^0.3.1",
     "ember-cli-inject-live-reload": "^1.4.0",
     "ember-cli-moment-shim": "^0.7.3",
-    "ember-cli-qunit": "^1.1.0",
+    "ember-cli-qunit": "^1.2.1",
     "ember-cli-release": "0.2.8",
     "ember-cli-semantic-ui": "0.8.0",
     "ember-cli-sri": "^2.0.0",
@@ -53,7 +49,7 @@
     "ember-disable-proxy-controllers": "^1.0.1",
     "ember-export-application-global": "^1.0.5",
     "ember-fetch": "1.2.2",
-    "ember-moment": "5.1.0",
+    "ember-moment": "6.0.0",
     "ember-resolver": "^2.0.3",
     "ember-websockets": "1.2.5"
   }
