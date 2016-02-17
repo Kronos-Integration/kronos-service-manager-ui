@@ -22,13 +22,16 @@
   "engines": {
     "node": ">=5.5.0"
   },
-  "contributors": [{
-    "name": "Torsten Link",
-    "email": "torstenlink@gmx.de"
-  }, {
-    "name": "Markus Felten",
-    "email": "markus.felten@gmx.de"
-  }],
+  "contributors": [
+    {
+      "name": "Torsten Link",
+      "email": "torstenlink@gmx.de"
+    },
+    {
+      "name": "Markus Felten",
+      "email": "markus.felten@gmx.de"
+    }
+  ],
   "license": "BSD-2-Clause",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.2",
@@ -49,8 +52,7 @@
     "ember-fetch": "1.2.2",
     "ember-load-initializers": "^0.5.0",
     "ember-resolver": "^2.0.3",
-    "loader.js": "^4.0.0",
-    "ember-fetch": "1.2.2",
+    "loader.js": "^4.0.1",
     "ember-moment": "6.0.0"
   },
   "disabledDependencies": {
