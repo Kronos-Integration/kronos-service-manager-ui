@@ -1,6 +1,6 @@
 {
   "name": "kronos-service-manager-ui",
-  "version": "0.0.0",
+  "version": "0.0.0-semantic-release",
   "description": "Small description for kronos-service-manager-ui goes here",
   "directories": {
     "doc": "doc",
@@ -9,18 +9,21 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server --proxy http://localhost:10000/",
-    "test": "ember test"
+    "test": "mocha tests/*_test.js",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "doc": "jsdoc lib/*.js",
+    "cover": "node ./node_modules/istanbul/lib/cli.js cover --hook-run-in-context ./node_modules/mocha/bin/_mocha -- --R spec --U exports tests/*_test.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Kronos-Integration/kronos-service-manager-ui.git"
+    "url": "https://github.com/Kronos-Integration/kronos-service-manager-ui.git"
   },
   "bugs": {
     "url": "https://github.com/Kronos-Integration/kronos-service-manager-ui/issues"
   },
   "homepage": "https://github.com/Kronos-Integration/kronos-service-manager-ui#readme",
   "engines": {
-    "node": ">=5.5.0"
+    "node": ">=5"
   },
   "contributors": [
     {
@@ -53,9 +56,21 @@
     "ember-load-initializers": "0.5.1",
     "ember-moment": "6.0.0",
     "ember-resolver": "^2.0.3",
-    "loader.js": "^4.0.1"
+    "loader.js": "^4.0.1",
+    "semantic-release": "6.2.0",
+    "chai": "3.5.0",
+    "mocha": "2.4.5",
+    "jsdoc": "3.4.0",
+    "istanbul": "0.4.2",
+    "cz-conventional-changelog": "1.1.5"
   },
   "disabledDependencies": {
     "ember-websockets": "2.0.3"
+  },
+  "keywords": [],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
