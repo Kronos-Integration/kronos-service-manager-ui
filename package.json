@@ -22,17 +22,20 @@
   "engines": {
     "node": ">=5.5.0"
   },
-  "contributors": [{
-    "name": "Torsten Link",
-    "email": "torstenlink@gmx.de"
-  }, {
-    "name": "Markus Felten",
-    "email": "markus.felten@gmx.de"
-  }],
+  "contributors": [
+    {
+      "name": "Torsten Link",
+      "email": "torstenlink@gmx.de"
+    },
+    {
+      "name": "Markus Felten",
+      "email": "markus.felten@gmx.de"
+    }
+  ],
   "license": "BSD-2-Clause",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.2",
-    "ember-cli": "2.4.0",
+    "ember-cli": "2.4.1",
     "ember-cli-app-version": "^1.0.0",
     "ember-cli-babel": "5.1.6",
     "ember-cli-dependency-checker": "^1.2.0",
