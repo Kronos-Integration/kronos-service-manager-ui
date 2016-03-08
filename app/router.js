@@ -13,4 +13,5 @@ export default Router.map(function () {
 
   this.route('login');
   this.route('state');
+  this.route('about');
 });
