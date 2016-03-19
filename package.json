@@ -1,13 +1,12 @@
 {
   "name": "kronos-service-manager-ui",
   "version": "0.0.0",
-  "description": "Small description for kronos-service-manager-ui goes here",
+  "description": "adminsitration ui for kronos",
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
   "scripts": {
-    "cover": "node ./node_modules/istanbul/lib/cli.js cover --hook-run-in-context ./node_modules/mocha/bin/_mocha -- --R spec --U exports tests/*_test.js",  
     "build": "ember build",
     "start": "ember server --proxy http://localhost:10000/",
     "test": "ember test"
@@ -23,16 +22,13 @@
   "engines": {
     "node": ">=5.5.0"
   },
-  "contributors": [
-    {
-      "name": "Torsten Link",
-      "email": "torstenlink@gmx.de"
-    },
-    {
-      "name": "Markus Felten",
-      "email": "markus.felten@gmx.de"
-    }
-  ],
+  "contributors": [{
+    "name": "Torsten Link",
+    "email": "torstenlink@gmx.de"
+  }, {
+    "name": "Markus Felten",
+    "email": "markus.felten@gmx.de"
+  }],
   "license": "BSD-2-Clause",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.2",
@@ -54,8 +50,7 @@
     "ember-load-initializers": "0.5.1",
     "ember-moment": "6.1.0",
     "ember-resolver": "^2.0.3",
-    "loader.js": "^4.0.1",
-    "istanbul": "0.4.2"
+    "loader.js": "^4.0.1"
   },
   "disabledDependencies": {
     "ember-websockets": "2.0.3"
