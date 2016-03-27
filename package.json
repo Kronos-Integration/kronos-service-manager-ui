@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "ember build",
-    "start": "ember server --proxy http://localhost:10000/",
+    "start": "ember server --proxy http://localhost:10001/",
     "test": "ember test"
   },
   "repository": {
@@ -49,9 +49,7 @@
     "ember-load-initializers": "^0.5.1",
     "ember-moment": "6.1.0",
     "ember-resolver": "^2.0.3",
+    "ember-websockets": "3.0.0",
     "loader.js": "^4.0.1"
-  },
-  "disabledDependencies": {
-    "ember-websockets": "2.0.3"
   }
 }

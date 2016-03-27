@@ -13,7 +13,7 @@ export function allFlows() {
     return flowsArray;
   }
 
-  return fetch('flows').then((response) => response.json().then((json) => createFlowsFromJSON(
+  return fetch('flow').then((response) => response.json().then((json) => createFlowsFromJSON(
     json)));
 }
 
@@ -25,12 +25,12 @@ export function getFlow(id) {
     }
   }
 
-  return fetch(`flows/${id}`).then((response) => response.json().then((json) => createFromJSON(
+  return fetch(`flow/${id}`).then((response) => response.json().then((json) => createFromJSON(
     json)));
 }
 
 export function createFlow(json) {
-  return fetch('flows', {
+  return fetch('flow', {
     method: 'POST',
     body: JSON.stringify(json)
   }).then((response) => response.json().then(json => {
@@ -48,7 +48,7 @@ export function deleteFlowLocally(id) {
 }
 
 export function deleteFlow(id) {
-  return fetch(`flows/${id}`, {
+  return fetch(`flow/${id}`, {
     method: 'DELETE'
   }).then((response) => response.json().then(json => {
     console.log(`deleted: ${JSON.stringify(json)}`);

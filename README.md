@@ -22,9 +22,9 @@
 
 ## Running / Development
 
-* `ember server --proxy http://localhost:10000/`
+* `ember server --proxy http://localhost:10001/`
 * Visit your app at [http://localhost:4200](http://localhost:4200).
-* kronos api running at [http://localhost:10000](http://localhost:10000).
+* kronos api running at [http://localhost:10001](http://localhost:10001).
 
 ### Running Tests
 
