@@ -116,22 +116,11 @@ export function createFromJSON(data) {
 
   for (const s in data.steps) {
     const step = data.steps[s];
-    const endpoints = [];
-
-    for (const e in step.endpoints) {
-      const ep = step.endpoints[e];
-
-      ep.isIn = ep.direction.match(/in/) ? true : false;
-      ep.isOut = ep.direction.match(/out/) ? true : false;
-
-      endpoints.push(ep);
-    }
-
-    step.endpoints = endpoints;
-    steps.push(step);
+    step.name = s;
   }
 
-  flow.steps = steps;
+  console.log(`${flow.name}: ${flow.steps}`);
+  flow.steps = data.steps;
 
   return flow;
 }

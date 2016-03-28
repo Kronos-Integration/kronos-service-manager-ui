@@ -9,7 +9,6 @@ export default Ember.Controller.extend({
     const location = `ws://${window.location.host}/state`;
     let socket = this.get('socketService').socketFor(location);
     let intervalHandler;
-    const myself = this;
 
     socket.on('open', () => {
       console.log(`(Re)open socket ${location}`);
