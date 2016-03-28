@@ -10,20 +10,7 @@ export default Ember.Component.extend({
 
     for (let sn in flow.steps) {
       const step = flow.steps[sn];
-
-      let inum = 0,
-        onum = 0;
-      for (let en in step.endpoints) {
-        const e = step.endpoints[en];
-        if (e.in) {
-          inum++;
-        }
-        if (e.out) {
-          onum++;
-        }
-      }
-
-      this.linkedBoxes.createNodeHelper(inum, onum);
+      this.linkedBoxes.createNodeHelper(step.inum, step.onum);
     }
 
     this.linkedBoxes.createLinkHelper(this.linkedBoxes.nodes[0], this.linkedBoxes.nodes[1], -1, 1);

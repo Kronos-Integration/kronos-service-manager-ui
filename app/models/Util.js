@@ -113,14 +113,45 @@ export function createFromJSON(data) {
   }
 
   flow.description = data.description;
+  flow.steps = data.steps;
 
   for (const s in data.steps) {
     const step = data.steps[s];
+    let inum = 0,
+      onum = 0;
+
+    for (const e in step.endpoints) {
+      const endpoint = step.endpoints[e];
+
+      endpoint.owner = flow;
+      endpoint.name = e;
+
+      if (endpoint.in) {
+        inum++;
+      }
+      if (endpoint.out) {
+        onum++;
+      }
+
+      if (endpoint.target) {
+        const m = endpoint.target.match(/^([^\/]+)\/(.*)/);
+        if (m) {
+          const cs = flow.steps[m[1]];
+          if (cs) {
+            const ce = cs.endpoints[m[2]];
+            if (ce) {
+              endpoint.counterpart = ce;
+              //console.log(`${endpoint.name} -> ${m[1]} / ${m[2]}`);
+            }
+          }
+        }
+      }
+    }
+    step.inum = inum;
+    step.onum = onum;
+
     step.name = s;
   }
-
-  console.log(`${flow.name}: ${flow.steps}`);
-  flow.steps = data.steps;
 
   return flow;
 }
