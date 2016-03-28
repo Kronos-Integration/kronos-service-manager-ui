@@ -1,7 +1,7 @@
 {
   "name": "kronos-service-manager-ui",
   "version": "0.0.0",
-  "description": "adminsitration ui for kronos",
+  "description": "administration ui for kronos",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -22,19 +22,18 @@
   "engines": {
     "node": ">=5.5.0"
   },
-  "contributors": [
-    {
-      "name": "Torsten Link",
-      "email": "torstenlink@gmx.de"
-    },
-    {
-      "name": "Markus Felten",
-      "email": "markus.felten@gmx.de"
-    }
-  ],
+  "contributors": [{
+    "name": "Torsten Link",
+    "email": "torstenlink@gmx.de"
+  }, {
+    "name": "Markus Felten",
+    "email": "markus.felten@gmx.de"
+  }],
   "license": "BSD-2-Clause",
   "devDependencies": {
+    "LinkedBoxes": "git+https://github.com/Lichtso/LinkedBoxes.git#1f1bf37a172f2dc2ec5f7918f3e77be6b39e6e92",
     "broccoli-asset-rev": "^2.4.2",
+    "ember-browserify": "^1.1.8",
     "ember-cli": "2.4.3",
     "ember-cli-app-version": "^1.0.0",
     "ember-cli-babel": "^5.1.6",

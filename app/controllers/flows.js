@@ -4,7 +4,7 @@ import Util from '../models/Util';
 
 export default Ember.Controller.extend({
   socketService: Ember.inject.service('websockets'),
-  init: function () {
+  xinit: function () {
     this._super.apply(this, arguments);
 
     const location = `ws://${window.location.host}/flow`;
