@@ -1,44 +1,4 @@
 <h3 id='title'>{{content.name}}</h3>
 <div class="content">
-  <svg xmlns="http://www.w3.org/2000/svg"
-    version="1.1"
-    baseProfile="full"
-    viewBox="0 0 800 600"
-    preserveAspectRatio="xMidYMid"
-    width="100%" height="100%">
-    <defs id="defs">
-      <marker id="connectorCircle" markerWidth="8" markerHeight="8" refX="5" refY="5">
-        <circle cx="5" cy="5" r="3" style="stroke: none; fill:#000000;"/>
-      </marker>
-      <marker
-         orient="auto"
-         refX="7.5"
-         refY="0"
-         id="connectorArrow"
-         style="overflow:visible">
-        <path
-           d="M 0,0 L 1,-5 L -12.5,0 L 1,5 L 0,0 z"
-           style="fill-rule:evenodd;stroke:#000000;stroke-width:1px;marker-start:none"
-           transform="scale(-0.6,-0.6)"/>
-      </marker>
-      </defs>
-
-  {{#each content.steps as |step|}}
-    <rect width={{step.w}} height={{step.h}} x={{step.x}} y={{step.y}} rx="9" ry="9" id={{step.name}}
-      class="step draggable" {{action 'drag' step}}/>
-    <text class="tLabel" x={{step.x}} y={{step.y}}>
-      <tspan class="stepType" x={{step.tx}} y={{step.ty}}>{{step.type}}</tspan>
-      <tspan class="stepLabel" x={{step.nx}} y={{step.ny}}>{{step.name}}</tspan>
-    </text>
-  {{/each}}
-  {{#each content.steps as |step|}}
-    {{#each step.endpoints as |ep|}}
-      {{#if ep.isOut}}
-        {{#if ep.counterpart}}
-          <path class="connector" d="M {{ep.x}},{{ep.y}} L {{ep.counterpart.x}},{{ep.counterpart.y}}"/>
-        {{/if}}
-      {{/if}}
-    {{/each}}
-  {{/each}}
-  </svg>
+     SVG comes here
 </div>

@@ -77,6 +77,7 @@ export function createFlowsFromJSON(json) {
   json.forEach(e => {
     const flow = Flow.create({
       id: e,
+      name: e,
       url: e
     });
     flowsArray.push(flow);
