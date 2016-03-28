@@ -1,13 +1,13 @@
 import Ember from 'ember';
 
-import Util from 'kronos-service-manager-ui/models/Util';
+import Util from '../models/Util';
 
 export default Ember.Controller.extend({
   socketService: Ember.inject.service('websockets'),
   init: function () {
     this._super.apply(this, arguments);
 
-    const location = `ws://${window.location.host}/flows`;
+    const location = `ws://${window.location.host}/flow`;
     const socket = this.get('socketService').socketFor(location);
 
     socket.on('message', function (event) {

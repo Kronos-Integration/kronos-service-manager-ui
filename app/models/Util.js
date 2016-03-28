@@ -1,9 +1,8 @@
 //import Ember from 'ember';
 import fetch from 'fetch';
 
-import Step from 'kronos-service-manager-ui/models/Step';
-//import Endpoint from 'kronos-service-manager-ui/models/Endpoint';
-import Flow from 'kronos-service-manager-ui/models/Flow';
+import Step from './Step';
+import Flow from './Flow';
 
 const flowsArray = [];
 const flowsById = {};
@@ -56,7 +55,7 @@ export function deleteFlow(id) {
 }
 
 export function stopFlow(id) {
-  return fetch(`flows/${id}/stop`, {
+  return fetch(`flow/${id}/stop`, {
     method: 'POST'
   }).then((response) => response.json().then(json => {
     console.log(`stop: ${JSON.stringify(json)}`);
@@ -64,7 +63,7 @@ export function stopFlow(id) {
 }
 
 export function startFlow(id) {
-  return fetch(`flows/${id}/start`, {
+  return fetch(`flow/${id}/start`, {
     method: 'POST'
   }).then((response) => response.json().then(json => {
     console.log(`start: ${JSON.stringify(json)}`);
@@ -76,9 +75,10 @@ export function createFlowsFromJSON(json) {
   //console.log(`createFlowsFromJSON: ${JSON.stringify(json)}`);
 
   json.forEach(e => {
-    //console.log(`createFlowsFromJSON each: ${JSON.stringify(e)}`);
-    e.id = e.url;
-    const flow = Flow.create(e);
+    const flow = Flow.create({
+      id: e,
+      url: e
+    });
     flowsArray.push(flow);
     flowsById[flow.id] = flow;
   });
