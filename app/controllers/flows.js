@@ -4,20 +4,20 @@ import Util from '../models/Util';
 
 export default Ember.Controller.extend({
   socketService: Ember.inject.service('websockets'),
-  xinit: function () {
+  xinit() {
     this._super.apply(this, arguments);
 
     const location = `ws://${window.location.host}/flow`;
     const socket = this.get('socketService').socketFor(location);
 
-    socket.on('message', function (event) {
+    socket.on('message', event => {
       const data = JSON.parse(event.data);
       //console.log(`Got message: ${JSON.stringify(data)}`);
       if (data.type === 'flowDeleted') {
         Util.deleteFlowLocally(data.flow);
       }
     }, this);
-    socket.on('close', function () {
+    socket.on('close', () => {
       console.log('close');
     }, this);
   },
@@ -26,18 +26,18 @@ export default Ember.Controller.extend({
     "delete": function (flow) {
       Util.deleteFlow(flow.id);
     },
-    stop: function (flow) {
+    stop(flow) {
       Util.stopFlow(flow.id);
     },
-    start: function (flow) {
+    start(flow) {
       Util.startFlow(flow.id);
     },
-    create: function () {
+    create() {
       const files = document.getElementById('file').files;
       const file = files[0];
 
       const reader = new FileReader();
-      reader.onload = function () {
+      reader.onload = () => {
         Util.createFlow(JSON.parse(reader.result));
       };
 

@@ -12,7 +12,7 @@ export function allFlows() {
     return flowsArray;
   }
 
-  return fetch('flow').then((response) => response.json().then((json) => createFlowsFromJSON(
+  return fetch('flow').then(response => response.json().then(json => createFlowsFromJSON(
     json)));
 }
 
@@ -24,7 +24,7 @@ export function getFlow(id) {
     }
   }
 
-  return fetch(`flow/${id}`).then((response) => response.json().then((json) => createFromJSON(
+  return fetch(`flow/${id}`).then(response => response.json().then(json => createFromJSON(
     json)));
 }
 
@@ -32,16 +32,13 @@ export function createFlow(json) {
   return fetch('flow', {
     method: 'POST',
     body: JSON.stringify(json)
-  }).then((response) => response.json().then(json => {
-    console.log(`created: ${JSON.stringify(json)}`);
-  }));
+  }).then((response) => response.json().then(json => console.log(`created: ${JSON.stringify(json)}`)));
 }
 
 export function deleteFlowLocally(id) {
   delete flowsById[id];
-  const index = flowsArray.findIndex((flow) => flow.id === id);
+  const index = flowsArray.findIndex(flow => flow.id === id);
   if (index >= 0) {
-    //console.log(`splice: ${index}`);
     flowsArray.splice(index, 1);
   }
 }
@@ -49,30 +46,23 @@ export function deleteFlowLocally(id) {
 export function deleteFlow(id) {
   return fetch(`flow/${id}`, {
     method: 'DELETE'
-  }).then((response) => response.json().then(json => {
-    console.log(`deleted: ${JSON.stringify(json)}`);
-  }));
+  }).then(response => response.json().then(json => console.log(`deleted: ${JSON.stringify(json)}`)));
 }
 
 export function stopFlow(id) {
   return fetch(`flow/${id}/stop`, {
     method: 'POST'
-  }).then((response) => response.json().then(json => {
-    console.log(`stop: ${JSON.stringify(json)}`);
-  }));
+  }).then(response => response.json().then(json => console.log(`stop: ${JSON.stringify(json)}`)));
 }
 
 export function startFlow(id) {
   return fetch(`flow/${id}/start`, {
     method: 'POST'
-  }).then((response) => response.json().then(json => {
-    console.log(`start: ${JSON.stringify(json)}`);
-  }));
+  }).then(response => response.json().then(json => console.log(`start: ${JSON.stringify(json)}`)));
 }
 
 
 export function createFlowsFromJSON(json) {
-  //console.log(`createFlowsFromJSON: ${JSON.stringify(json)}`);
 
   json.forEach(e => {
     const flow = Flow.create({
@@ -88,15 +78,13 @@ export function createFlowsFromJSON(json) {
 }
 
 export function createFromJSON(data) {
-  console.log(`createFromJSON: ${JSON.stringify(data)}`);
-
   const steps = [];
 
-  for (let s in data.steps) {
+  for (const s in data.steps) {
     const step = Step.create(data.steps[s]);
     steps.push(step);
 
-    for (let e in step.endpoints) {
+    for (const e in step.endpoints) {
       const ep = step.endpoints[e];
       if (ep.target) {
         const m = ep.target.match(/^step:([^/]+)\/(.+)/);
@@ -112,71 +100,35 @@ export function createFromJSON(data) {
 
   let flow;
 
-  if (flow = flowsById[data.id]) {} else {
+  if (flow = flowsById[data.id]) {
+
+  } else {
     flow = Flow.create({
-      id: data.id,
-      name: data.name
+      id: data.name,
+      name: data.name,
+      url: data.name
     });
     flowsById[flow.id] = flow;
     flowsArray.push(flow);
   }
 
-  const originX = 10;
-  const originY = 10;
+  flow.description = data.description;
 
-  const stepW = 60;
-  const stepH = 40;
-
-  const stepOffset = 12;
-  const endpointOffset = 12;
-
-  let x = originX;
-  let y = originY;
-
-  for (let s in data.steps) {
+  for (const s in data.steps) {
     const step = data.steps[s];
     const endpoints = [];
 
-    step.x = x;
-    step.y = y;
-    step.w = stepW;
-    step.nx = x + stepW / 2;
-    step.tx = x + stepW / 2;
-
-    let nIn = 0,
-      nOut = 0;
-
-    for (let e in step.endpoints) {
+    for (const e in step.endpoints) {
       const ep = step.endpoints[e];
 
       ep.isIn = ep.direction.match(/in/) ? true : false;
-      if (ep.isIn) {
-        ep.x = x + endpointOffset;
-        ep.y = y + endpointOffset + nIn++ * endpointOffset;
-      }
-
       ep.isOut = ep.direction.match(/out/) ? true : false;
-      if (ep.isOut) {
-        ep.x = x + stepW - endpointOffset;
-        ep.y = y + endpointOffset + nOut++ * endpointOffset;
-      }
 
       endpoints.push(ep);
     }
 
-    step.h = ((nIn > nOut ? nIn : nOut) + 1) * endpointOffset;
-    step.ny = y + step.h / 2 + 5;
-    step.ty = y + 10;
-
     step.endpoints = endpoints;
     steps.push(step);
-
-    y += step.h + stepOffset;
-
-    if (y > originY + 4 * stepH) {
-      x += stepW + stepOffset;
-      y = originY;
-    }
   }
 
   flow.steps = steps;

@@ -3,7 +3,7 @@ import lb from 'npm:LinkedBoxes';
 
 export default Ember.Component.extend({
 
-  didInsertElement: function () {
+  didInsertElement() {
     const element = document.getElementById('linked-boxes');
     this.linkedBoxes = new lb.LinkedBoxes(element);
 

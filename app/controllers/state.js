@@ -19,8 +19,8 @@ export default Ember.Controller.extend({
     socket.on('close', () => {
       socket = undefined;
       this.set('content.connected', false);
-      intervalHandler = setInterval(function () {
-        socket = myself.get('socketService').socketFor(location);
+      intervalHandler = setInterval(() => {
+        socket = this.get('socketService').socketFor(location);
         console.log(`Trying to reopen socket ${location} -> ${socket}`);
       }, 5000);
     }, this);
