@@ -98,12 +98,14 @@ export function createFromJSON(data) {
 
     for (let e in step.endpoints) {
       const ep = step.endpoints[e];
-      const m = ep.target.match(/^step:([^/]+)\/(.+)/);
-      if (m) {
-        const targetStep = m[1];
-        const targetEndpoint = m[2];
-        ep.counterpart = data.steps[targetStep].endpoints[targetEndpoint];
-        ep.counterpart.counterpart = ep;
+      if (ep.target) {
+        const m = ep.target.match(/^step:([^/]+)\/(.+)/);
+        if (m) {
+          const targetStep = m[1];
+          const targetEndpoint = m[2];
+          ep.counterpart = data.steps[targetStep].endpoints[targetEndpoint];
+          ep.counterpart.counterpart = ep;
+        }
       }
     }
   }

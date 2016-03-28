@@ -1,72 +1,89 @@
-
-.draggable {
-  cursor: move;
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
 }
 
-.step {
-  stroke:black;
-  stroke-width:2px;
-  fill:#f0f0d2;
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
-.step:hover {
-  stroke-width:4px;
+.LinkedBoxes .fadeIn {
+    animation: fadeIn 0.25s linear forwards;
 }
 
-.connector {
-  fill:none;
-  stroke:black;
-  stroke-width:2px;
-  stroke-linecap:butt;
-  stroke-linejoin:miter;
-  stroke-opacity:1;
-  marker-start:url(#connectorCircle);
-  marker-end:url(#connectorArrow);
+.LinkedBoxes .fadeOut {
+    animation: fadeOut 0.25s linear forwards;
 }
 
-.connector:hover {
-  stroke-width:4px;
+.LinkedBoxes {
+    padding: 0px;
+    margin: 0px;
+    position: relative;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select:none;
+    user-select:none;
+    -o-user-select:none;
 }
 
-.cluster {
-  fill:#ffdd3c;
-  fill-opacity:0.372549;
-  stroke:#ffdd3c;
-  stroke-opacity:1;
+.LinkedBoxes svg {
+    width: 100%;
+    height: 100%;
+    padding: 0;
 }
 
-.tLabel {
-  text-anchor:middle;
-  text-align:center;
+.LinkedBoxes path {
+    stroke: black;
 }
 
-.stepLabel {
-  font-size:12px;
-  fill:black;
-  fill-opacity:1;
-  font-family:DejaVu Sans;
+.LinkedBoxes circle {
+    stroke: black;
+    fill: none;
 }
 
-.stepType {
-  font-size:9px;
-  fill:black;
-  fill-opacity:0.5;
-  font-family:DejaVu Sans;
+.LinkedBoxes rect {
+    stroke: black;
+    stroke-width: 1;
+    fill: none;
 }
 
-.frLabel {
-  font-size:12px;
-  fill:black;
-  fill-opacity:1;
-  stroke-width:1px;
-  stroke-linecap:butt;
-  stroke-linejoin:miter;
-  stroke-opacity:1;
-  font-family:DejaVu Sans;
-  font-stretch:normal;
-  font-variant:normal;
-  text-anchor:middle;
-  text-align:center;
-  progression-align:center;
-  line-height:125%;
+.LinkedBoxes * {
+    font-family: Verdana;
+    font-size: 12px;
+    font-style: normal;
+    font-variant: normal;
+    fill: black;
+    color: black;
 }
+
+.LinkedBoxes .link {
+    stroke-linecap: round;
+    stroke-width: 2;
+    fill: none;
+}
+
+.LinkedBoxes .cursor {
+    filter: url(#blurFilter);
+}
+
+.LinkedBoxes .red {
+    stroke: #f44;
+}
+
+.LinkedBoxes .green {
+    stroke: #4f8;
+}
+
+.LinkedBoxes .blue {
+    stroke: #48f;
+}
+
+/* .LinkedBoxes .arrow {
+    marker-end: url(#arrowMarker);
+}
+
+.LinkedBoxes .disabled {
+    fill: gray;
+    color: gray;
+} */
