@@ -114,11 +114,13 @@ export function createFromJSON(data) {
 
   flow.description = data.description;
   flow.steps = data.steps;
+  flow.links = [];
 
   for (const s in data.steps) {
     const step = data.steps[s];
-    let inum = 0,
-      onum = 0;
+
+    step.leftSide = [];
+    step.rightSide = [];
 
     for (const e in step.endpoints) {
       const endpoint = step.endpoints[e];
@@ -127,10 +129,12 @@ export function createFromJSON(data) {
       endpoint.name = e;
 
       if (endpoint.in) {
-        inum++;
+        endpoint.index = step.leftSide.length;
+        step.leftSide.push({});
       }
       if (endpoint.out) {
-        onum++;
+        endpoint.index = step.rightSide.length;
+        step.rightSide.push({});
       }
 
       if (endpoint.target) {
@@ -140,16 +144,19 @@ export function createFromJSON(data) {
           if (cs) {
             const ce = cs.endpoints[m[2]];
             if (ce) {
-              endpoint.counterpart = ce;
-              //console.log(`${endpoint.name} -> ${m[1]} / ${m[2]}`);
+              const link = {
+                src: endpoint,
+                srcNode: step,
+                dstNode: cs,
+                dst: ce
+              };
+              //endpoint.link = link;
+              flow.links.push(link);
             }
           }
         }
       }
     }
-    step.inum = inum;
-    step.onum = onum;
-
     step.name = s;
   }
 

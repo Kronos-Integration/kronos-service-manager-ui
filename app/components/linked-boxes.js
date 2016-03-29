@@ -1,19 +1,39 @@
 import Ember from 'ember';
-import lb from 'npm:LinkedBoxes';
+import LinkedBoxes from 'npm:LinkedBoxes';
 
 export default Ember.Component.extend({
 
   didInsertElement() {
     const flow = this.get('flow');
     const element = document.getElementById('linked-boxes');
-    this.linkedBoxes = new lb.LinkedBoxes(element);
+    this.linkedBoxes = new LinkedBoxes(element);
 
-    for (let sn in flow.steps) {
+    for (const sn in flow.steps) {
       const step = flow.steps[sn];
-      this.linkedBoxes.createNodeHelper(step.inum, step.onum);
+      this.linkedBoxes.initializeNode(step);
+      step.label.textContent = sn;
+
+      let l = 0,
+        r = 0;
+
+      for (const e in step.endpoints) {
+        const endpoint = step.endpoints[e];
+        if (endpoint.in) {
+          step.leftSide[l++].label.textContent = endpoint.name;
+        }
+        if (endpoint.out) {
+          step.rightSide[r++].label.textContent = endpoint.name;
+        }
+      }
     }
 
-    this.linkedBoxes.createLinkHelper(this.linkedBoxes.nodes[0], this.linkedBoxes.nodes[1], -1, 1);
+    for (const link of flow.links) {
+      //console.log(`${link.src.name}[${link.src.index}] -> ${link.dst.name}[${link.dst.index}] `);
+      link.srcCircle = link.srcNode.rightSide[link.src.index].circle;
+      link.dstCircle = link.dstNode.leftSide[link.dst.index].circle;
+      this.linkedBoxes.initializeLink(link);
+    }
+
     this.linkedBoxes.syncGraph();
 
     this.linkedBoxes.cursorNode = this.linkedBoxes.nodes[0];
