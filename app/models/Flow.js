@@ -3,8 +3,8 @@ import Ember from 'ember';
 export default Ember.Object.extend({
   name: "",
   description: "",
-  state: "registered",
-  steps: undefined,
+  state: "stopped",
+  steps: {},
   isRunning() {
     return this.state === 'running';
   }

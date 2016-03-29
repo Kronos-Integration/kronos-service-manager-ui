@@ -17,7 +17,7 @@
 }
 
 .LinkedBoxes {
-    height: 500px;
+    height: 600px;
     padding: 0px;
     margin: 0px;
     position: relative;
@@ -36,6 +36,7 @@
 
 .LinkedBoxes circle {
     stroke: black;
+    stroke-width: 2;
     fill: transparent;
 }
 
@@ -59,7 +60,7 @@
 
 .LinkedBoxes .link {
     stroke-linecap: round;
-    stroke-width: 2;
+    stroke-width: 3;
     fill: none;
 }
 
