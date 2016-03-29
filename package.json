@@ -31,7 +31,7 @@
   }],
   "license": "BSD-2-Clause",
   "devDependencies": {
-    "LinkedBoxes": "git+https://github.com/Lichtso/LinkedBoxes.git#1f1bf37a172f2dc2ec5f7918f3e77be6b39e6e92",
+    "LinkedBoxes": "git+https://github.com/Lichtso/LinkedBoxes.git",
     "broccoli-asset-rev": "^2.4.2",
     "ember-browserify": "^1.1.8",
     "ember-cli": "2.4.3",

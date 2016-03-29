@@ -17,6 +17,7 @@
 }
 
 .LinkedBoxes {
+    height: 500px;
     padding: 0px;
     margin: 0px;
     position: relative;
@@ -33,19 +34,15 @@
     padding: 0;
 }
 
-.LinkedBoxes path {
-    stroke: black;
-}
-
 .LinkedBoxes circle {
     stroke: black;
-    fill: none;
+    fill: transparent;
 }
 
 .LinkedBoxes rect {
     stroke: black;
     stroke-width: 1;
-    fill: none;
+    fill: transparent;
 }
 
 .LinkedBoxes * {
@@ -53,8 +50,11 @@
     font-size: 12px;
     font-style: normal;
     font-variant: normal;
-    fill: black;
     color: black;
+}
+
+.LinkedBoxes path {
+    stroke: black;
 }
 
 .LinkedBoxes .link {
@@ -67,23 +67,6 @@
     filter: url(#blurFilter);
 }
 
-.LinkedBoxes .red {
-    stroke: #f44;
-}
-
-.LinkedBoxes .green {
-    stroke: #4f8;
-}
-
-.LinkedBoxes .blue {
-    stroke: #48f;
-}
-
 /* .LinkedBoxes .arrow {
     marker-end: url(#arrowMarker);
-}
-
-.LinkedBoxes .disabled {
-    fill: gray;
-    color: gray;
 } */
