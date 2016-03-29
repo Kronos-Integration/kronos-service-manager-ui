@@ -75,28 +75,6 @@ export function createFlowsFromJSON(json) {
 }
 
 export function createFromJSON(data) {
-
-  /*
-  const steps = [];
-    for (const s in data.steps) {
-      const step = Step.create(data.steps[s]);
-      steps.push(step);
-
-      for (const e in step.endpoints) {
-        const ep = step.endpoints[e];
-        if (ep.target) {
-          const m = ep.target.match(/^step:([^/]+)\/(.+)/);
-          if (m) {
-            const targetStep = m[1];
-            const targetEndpoint = m[2];
-            ep.counterpart = data.steps[targetStep].endpoints[targetEndpoint];
-            ep.counterpart.counterpart = ep;
-          }
-        }
-      }
-    }
-  */
-
   let flow;
 
   if (flow = flowsById[data.id]) {
