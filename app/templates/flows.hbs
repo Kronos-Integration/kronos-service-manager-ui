@@ -1,6 +1,4 @@
 <div class="content">
-  <h3 id='title'>Flows</h3>
-
 <div class="ui relaxed celled list">
   {{#each content as |flow|}}
   <div class="item">
@@ -9,9 +7,9 @@
         Delete
       </button>
     </div>
-    <i class="large github middle aligned icon"></i>
+    <i class="large middle aligned icon"></i>
     <div class="content">
-      {{#link-to 'flow' flow class="header"}} {{flow.name}} {{/link-to}}
+      {{#link-to 'flow' flow class="header"}} {{flow.name}}{{/link-to}}
       <div class="description">{{flow.description}}</div>
     </div>
   </div>
