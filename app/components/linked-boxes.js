@@ -28,7 +28,6 @@ export default Ember.Component.extend({
     }
 
     for (const link of flow.links) {
-      //console.log(`${link.src.name}[${link.src.index}] -> ${link.dst.name}[${link.dst.index}] `);
       link.srcCircle = link.srcNode.rightSide[link.src.index].circle;
       link.dstCircle = link.dstNode.leftSide[link.dst.index].circle;
       this.linkedBoxes.initializeLink(link);

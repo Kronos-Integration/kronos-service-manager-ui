@@ -27,7 +27,7 @@ export function getFlow(id) {
 
 export function createFlow(json) {
   return fetch('flow', {
-    method: 'POST',
+    method: 'PUT',
     body: JSON.stringify(json)
   }).then((response) => response.json().then(json => console.log(`created: ${JSON.stringify(json)}`)));
 }

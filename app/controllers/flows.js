@@ -34,14 +34,17 @@ export default Ember.Controller.extend({
     },
     create() {
       const files = document.getElementById('file').files;
-      const file = files[0];
 
-      const reader = new FileReader();
-      reader.onload = () => {
-        Util.createFlow(JSON.parse(reader.result));
-      };
+      function processFile(file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          Util.createFlow(JSON.parse(reader.result));
+        };
 
-      reader.readAsText(file);
+        reader.readAsText(file);
+      }
+
+      processFile(files[0]);
     }
   }
 });
