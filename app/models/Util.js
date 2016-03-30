@@ -15,8 +15,9 @@ export function allFlows() {
 
 export function getFlow(id) {
   const flow = flowsById[id];
+
   if (flow) {
-    if (flow.steps) {
+    if (flow.state !== 'invalid') {
       return flow;
     }
   }
@@ -91,7 +92,6 @@ export function createFromJSON(data) {
 
   flow.description = data.description;
   flow.steps = data.steps;
-  flow.links = [];
 
   for (const s in data.steps) {
     const step = data.steps[s];

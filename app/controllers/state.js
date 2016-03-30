@@ -3,15 +3,14 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 
   socketService: Ember.inject.service('websockets'),
-  xinit() {
+  init() {
     this._super.apply(this, arguments);
 
-    const location = `ws://${window.location.host}/state`;
+    const location = `ws://${window.location.host}`;
     let socket = this.get('socketService').socketFor(location);
     let intervalHandler;
 
     socket.on('open', () => {
-      console.log(`(Re)open socket ${location}`);
       this.set('content.connected', true);
       clearInterval(intervalHandler);
     }, this);
@@ -20,8 +19,7 @@ export default Ember.Controller.extend({
       this.set('content.connected', false);
       intervalHandler = setInterval(() => {
         socket = this.get('socketService').socketFor(location);
-        console.log(`Trying to reopen socket ${location} -> ${socket}`);
-      }, 5000);
+      }, 600000);
     }, this);
     socket.on('message', event => {
       const data = JSON.parse(event.data);
