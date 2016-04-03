@@ -22,11 +22,5 @@ export default Ember.Controller.extend({
       }, this);
     },
   */
-  actions: {
-    drag(step) {
-      //step.x = 100;
-      step.set('x', step.x + 10);
-      console.log(`drag: ${step.name}`);
-    }
-  }
+  actions: {}
 });

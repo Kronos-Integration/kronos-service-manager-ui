@@ -9,7 +9,7 @@ export function allFlows() {
     return flowsArray;
   }
 
-  return fetch('flow').then(response => response.json().then(json => createFlowsFromJSON(
+  return fetch('api/flow').then(response => response.json().then(json => createFlowsFromJSON(
     json)));
 }
 
@@ -22,12 +22,12 @@ export function getFlow(id) {
     }
   }
 
-  return fetch(`flow/${id}`).then(response => response.json().then(json => createFromJSON(
+  return fetch(`api/flow/${id}`).then(response => response.json().then(json => createFromJSON(
     json)));
 }
 
 export function createFlow(json) {
-  return fetch('flow', {
+  return fetch('api/flow', {
     method: 'PUT',
     body: JSON.stringify(json)
   }).then((response) => response.json().then(json => console.log(`created: ${JSON.stringify(json)}`)));
@@ -42,19 +42,19 @@ export function deleteFlowLocally(id) {
 }
 
 export function deleteFlow(id) {
-  return fetch(`flow/${id}`, {
+  return fetch(`api/flow/${id}`, {
     method: 'DELETE'
   }).then(response => response.json().then(json => console.log(`deleted: ${JSON.stringify(json)}`)));
 }
 
 export function stopFlow(id) {
-  return fetch(`flow/${id}/stop`, {
+  return fetch(`api/flow/${id}/stop`, {
     method: 'POST'
   }).then(response => response.json().then(json => console.log(`stop: ${JSON.stringify(json)}`)));
 }
 
 export function startFlow(id) {
-  return fetch(`flow/${id}/start`, {
+  return fetch(`api/flow/${id}/start`, {
     method: 'POST'
   }).then(response => response.json().then(json => console.log(`start: ${JSON.stringify(json)}`)));
 }
