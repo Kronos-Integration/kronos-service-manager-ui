@@ -4,13 +4,24 @@ import Flow from './Flow';
 const flowsArray = [];
 const flowsById = {};
 
+const servicesById = {};
+
 export function allFlows() {
   if (flowsArray.length > 0) {
     return flowsArray;
   }
 
-  return fetch('api/flow').then(response => response.json().then(json => createFlowsFromJSON(
-    json)));
+  return fetch('api/flow').then(response => response.json().then(flowJson => {
+    return fetch('api/service').then(response => response.json().then(serviceJson => {
+      console.log(`${JSON.stringify(serviceJson)}`);
+
+      serviceJson.forEach(s => {
+        servicesById[s.name] = s;
+      });
+
+      return createFlowsFromJSON(flowJson);
+    }));
+  }));
 }
 
 export function getFlow(id) {
@@ -115,7 +126,7 @@ export function createFromJSON(data) {
       }
 
       if (endpoint.target) {
-        const m = endpoint.target.match(/^([^\/]+)\/(.*)/);
+        let m = endpoint.target.match(/^([^\/]+)\/(.*)/);
         if (m) {
           const cs = flow.steps[m[1]];
           if (cs) {
@@ -128,6 +139,23 @@ export function createFromJSON(data) {
                 dst: ce
               };
               //endpoint.link = link;
+              flow.links.push(link);
+            }
+          }
+        }
+
+        m = endpoint.target.match(/^([^\/]+):(.*)/);
+        if (m) {
+          const cs = servicesById[m[1]];
+          if (cs) {
+            const ce = cs.endpoints[m[2]];
+            if (ce) {
+              const link = {
+                src: endpoint,
+                srcNode: step,
+                dstNode: cs,
+                dst: ce
+              };
               flow.links.push(link);
             }
           }

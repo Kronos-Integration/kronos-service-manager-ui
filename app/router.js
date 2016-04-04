@@ -11,6 +11,11 @@ export default Router.map(function () {
     path: '/flow/:flow_id'
   });
 
+  this.route('services');
+  this.route('service', {
+    path: '/service/:service_id'
+  });
+
   this.route('login');
   this.route('state');
   this.route('about');
