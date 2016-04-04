@@ -35,9 +35,9 @@
 }
 
 .LinkedBoxes circle {
-    stroke: black;
-    stroke-width: 2;
-    fill: transparent;
+    stroke: rgba(133, 86, 213, 0.25);
+    stroke-width: 4;
+    fill: rgba(113, 100, 182, 0.1);
 }
 
 .LinkedBoxes rect {
@@ -60,8 +60,14 @@
 
 .LinkedBoxes .link {
     stroke-linecap: round;
-    stroke-width: 3;
+    stroke-width: 4;
+    stroke: rgba(133, 86, 213, 0.25);
     fill: none;
+}
+
+.link:hover {
+  stroke-width: 6;
+  stroke: rgba(133, 86, 213, 0.6);
 }
 
 .LinkedBoxes .cursor {
@@ -70,4 +76,4 @@
 
 /* .LinkedBoxes .arrow {
     marker-end: url(#arrowMarker);
-} */
+}*/
