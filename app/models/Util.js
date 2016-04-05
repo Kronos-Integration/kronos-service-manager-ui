@@ -1,20 +1,17 @@
+import Ember from 'ember';
 import fetch from 'fetch';
 import Flow from './Flow';
 
-const flowsArray = [];
 const flowsById = {};
-
 const servicesById = {};
 
 export function allFlows() {
-  if (flowsArray.length > 0) {
-    return flowsArray;
+  if (flowsById.length > 0) {
+    return flowsById;
   }
 
   return fetch('api/flow').then(response => response.json().then(flowJson => {
     return fetch('api/service').then(response => response.json().then(serviceJson => {
-      console.log(`${JSON.stringify(serviceJson)}`);
-
       serviceJson.forEach(s => {
         servicesById[s.name] = s;
       });
@@ -46,16 +43,14 @@ export function createFlow(json) {
 
 export function deleteFlowLocally(id) {
   delete flowsById[id];
-  const index = flowsArray.findIndex(flow => flow.id === id);
-  if (index >= 0) {
-    flowsArray.splice(index, 1);
-  }
 }
 
 export function deleteFlow(id) {
   return fetch(`api/flow/${id}`, {
     method: 'DELETE'
-  }).then(response => response.json().then(json => console.log(`deleted: ${JSON.stringify(json)}`)));
+  }).then(() => {
+    delete flowsById[id];
+  });
 }
 
 export function stopFlow(id) {
@@ -72,34 +67,34 @@ export function startFlow(id) {
 
 
 export function createFlowsFromJSON(json) {
-
   json.forEach(e => {
-    const flow = Flow.create({
+    const ObjectPromiseProxy = Ember.ObjectProxy.extend(Ember.PromiseProxyMixin);
+
+    const flow = ObjectPromiseProxy.create({
       id: e,
       name: e,
-      url: e
+      promise: fetch(`api/flow/${e}`)
     });
-    flowsArray.push(flow);
+
+    flow.then(json => {
+      const f = createFromJSON(json);
+      flowsById[f.id] = f;
+    });
+
     flowsById[flow.id] = flow;
   });
 
-  return flowsArray;
+  return flowsById;
 }
 
 export function createFromJSON(data) {
-  let flow;
 
-  if (flow = flowsById[data.id]) {
-
-  } else {
-    flow = Flow.create({
-      id: data.name,
-      name: data.name,
-      url: data.name
-    });
-    flowsById[flow.id] = flow;
-    flowsArray.push(flow);
-  }
+  const flow = Flow.create({
+    id: data.name,
+    name: data.name,
+    url: data.name
+  });
+  flowsById[flow.id] = flow;
 
   flow.description = data.description;
   flow.steps = data.steps;

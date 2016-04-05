@@ -1,19 +1,18 @@
 <div class="content">
 <div class="ui relaxed celled list">
-  {{#each content as |flow|}}
+  {{#each-in content as |name flow|}}
   <div class="item">
-    <div class="right floated content">
-      <button class="ui small negative labeled button" {{action 'delete' flow}}>
-        Delete
-      </button>
-    </div>
     <i class="large middle aligned icon"></i>
     <div class="content">
       {{#link-to 'flow' flow class="header"}} {{flow.name}}{{/link-to}}
-      <div class="description">{{flow.description}}</div>
+      {{#if flow.isPending}}
+        pending...
+      {{else}}
+        <div class="description">{{flow.description}}</div>
+      {{/if}}
     </div>
   </div>
-  {{/each}}
+  {{/each-in}}
 </div>
 <form class="ui form">
   <div class="field">
