@@ -1,0 +1,15 @@
+<div class="content">
+  Name: {{content.name}}
+  State: {{content.state}}
+
+<div class="ui relaxed celled list">
+  {{#each-in content.endpoints as |name endpoint|}}
+  <div class="item">
+    <i class="large middle aligned icon"></i>
+    <div class="content">
+      {{name}}
+    </div>
+  </div>
+  {{/each-in}}
+</div>
+</div>

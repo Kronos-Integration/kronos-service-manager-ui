@@ -5,6 +5,32 @@ import Flow from './Flow';
 const flowsById = {};
 const servicesById = {};
 
+export function allServices() {
+  if (servicesById.length > 0) {
+    return servicesById;
+  }
+
+  return fetch('api/service').then(response => response.json()).then(serviceJson => {
+    serviceJson.forEach(s => {
+      servicesById[s.name] = s;
+    });
+
+    return servicesById;
+  });
+}
+
+export function getService(id) {
+  const service = servicesById[id];
+
+  if (service) {
+    if (service.state !== 'invalid') {
+      return service;
+    }
+  }
+
+  return fetch(`api/service/${id}`).then(response => response.json());
+}
+
 export function allFlows() {
   if (flowsById.length > 0) {
     return flowsById;
