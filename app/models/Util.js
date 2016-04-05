@@ -127,14 +127,13 @@ export function createFromJSON(data) {
           if (cs) {
             const ce = cs.endpoints[m[2]];
             if (ce) {
-              const link = {
+              const wire = {
                 src: endpoint,
-                srcNode: step,
-                dstNode: cs,
+                srcPanel: step,
+                dstPanel: cs,
                 dst: ce
               };
-              //endpoint.link = link;
-              flow.links.push(link);
+              flow.wires.push(wire);
             }
           }
         }
@@ -145,13 +144,13 @@ export function createFromJSON(data) {
           if (cs) {
             const ce = cs.endpoints[m[2]];
             if (ce) {
-              const link = {
+              const wire = {
                 src: endpoint,
-                srcNode: step,
-                dstNode: cs,
+                srcPanel: step,
+                dstPanel: cs,
                 dst: ce
               };
-              flow.links.push(link);
+              flow.wires.push(wire);
             }
           }
         }

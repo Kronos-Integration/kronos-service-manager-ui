@@ -5,7 +5,7 @@ export default Ember.Object.extend({
   description: "",
   state: 'invalid',
   steps: {},
-  links: [],
+  wires: [],
   isRunning() {
     return this.state === 'running';
   }

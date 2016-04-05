@@ -8,15 +8,15 @@
     100% { opacity: 1; }
 }
 
-.LinkedBoxes .fadeIn {
+.WiredPanels .fadeIn {
     animation: fadeIn 0.25s linear forwards;
 }
 
-.LinkedBoxes .fadeOut {
+.WiredPanels .fadeOut {
     animation: fadeOut 0.25s linear forwards;
 }
 
-.LinkedBoxes {
+.WiredPanels {
     height: 600px;
     padding: 0px;
     margin: 0px;
@@ -28,52 +28,52 @@
     -o-user-select:none;
 }
 
-.LinkedBoxes svg {
+.WiredPanels svg {
     width: 100%;
     height: 100%;
     padding: 0;
 }
 
-.LinkedBoxes circle {
-    stroke: rgba(133, 86, 213, 0.25);
-    stroke-width: 4;
-    fill: rgba(113, 100, 182, 0.1);
-}
-
-.LinkedBoxes rect {
-    stroke: black;
-    stroke-width: 1;
-    fill: transparent;
-}
-
-.LinkedBoxes * {
+.WiredPanels * {
     font-family: Verdana;
     font-size: 12px;
     font-style: normal;
     font-variant: normal;
-    color: black;
+    fill: blue;
+    color: blue;
 }
 
-.LinkedBoxes path {
-    stroke: black;
+.WiredPanels .panel {
+    fill: transparent;
+    stroke: blue;
 }
 
-.LinkedBoxes .link {
+.WiredPanels .socket {
+    stroke-width: 2;
+    fill: transparent;
+    stroke: blue;
+}
+
+.WiredPanels .socket:hover {
+    stroke-width: 4;
+}
+
+.WiredPanels .wire {
     stroke-linecap: round;
     stroke-width: 4;
-    stroke: rgba(133, 86, 213, 0.25);
+    stroke-opacity: 0.6;
+    stroke: blue;
     fill: none;
 }
 
-.link:hover {
-  stroke-width: 6;
-  stroke: rgba(133, 86, 213, 0.6);
+.WiredPanels .wire:hover {
+    stroke-opacity: 1;
 }
 
-.LinkedBoxes .cursor {
+.WiredPanels .cursor {
     filter: url(#blurFilter);
 }
 
 /* .LinkedBoxes .arrow {
     marker-end: url(#arrowMarker);
-}*/
+} */
