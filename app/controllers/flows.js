@@ -3,7 +3,7 @@ import Util from '../models/Util';
 
 export default Ember.Controller.extend({
   socketService: Ember.inject.service('websockets'),
-  xinit() {
+  init() {
     this._super.apply(this, arguments);
 
     const location = `ws://${window.location.host}/flow`;
@@ -11,7 +11,7 @@ export default Ember.Controller.extend({
 
     socket.on('message', event => {
       const data = JSON.parse(event.data);
-      //console.log(`Got message: ${JSON.stringify(data)}`);
+      console.log(`Got message: ${JSON.stringify(data)}`);
       if (data.type === 'flowDeleted') {
         Util.deleteFlowLocally(data.flow);
       }

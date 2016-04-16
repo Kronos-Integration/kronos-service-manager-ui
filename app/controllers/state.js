@@ -6,12 +6,15 @@ export default Ember.Controller.extend({
   init() {
     this._super.apply(this, arguments);
 
-    const location = `ws://${window.location.host}`;
+    const location = `ws://${window.location.host}/state`;
     let socket = this.get('socketService').socketFor(location);
     let intervalHandler;
 
     socket.on('open', () => {
       this.set('content.connected', true);
+      socket.send({
+        autoUpdate: 1000
+      });
       clearInterval(intervalHandler);
     }, this);
     socket.on('close', () => {
@@ -22,6 +25,7 @@ export default Ember.Controller.extend({
       }, 600000);
     }, this);
     socket.on('message', event => {
+      //console.log(event);
       const data = JSON.parse(event.data);
       this.set('content.uptime', data.uptime);
       this.set('content.memory.heapTotal', data.memory.heapTotal);
