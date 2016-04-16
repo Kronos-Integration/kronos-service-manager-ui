@@ -12,9 +12,9 @@ export default Ember.Controller.extend({
 
     socket.on('open', () => {
       this.set('content.connected', true);
-      socket.send({
-        autoUpdate: 1000
-      });
+      /*  socket.send({
+          autoUpdate: 1000
+        });*/
       clearInterval(intervalHandler);
     }, this);
     socket.on('close', () => {
