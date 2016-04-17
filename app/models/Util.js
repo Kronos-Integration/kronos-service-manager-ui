@@ -124,6 +124,7 @@ export function createFromJSON(data) {
 
   flow.description = data.description;
   flow.steps = data.steps;
+  flow.services = {};
 
   for (const s in data.steps) {
     const step = data.steps[s];
@@ -166,18 +167,39 @@ export function createFromJSON(data) {
 
         m = endpoint.target.match(/^([^\/]+):(.*)/);
         if (m) {
-          const cs = servicesById[m[1]];
-          if (cs) {
-            const ce = cs.endpoints[m[2]];
-            if (ce) {
-              const wire = {
-                src: endpoint,
-                srcPanel: step,
-                dstPanel: cs,
-                dst: ce
-              };
-              flow.wires.push(wire);
-            }
+          let cs = servicesById[m[1]];
+          if (!cs) {
+            const name = m[1];
+            cs = servicesById[name] = {
+              name: name,
+              endpoints: {},
+              state: "unknown",
+              leftSide: [],
+              rightSide: []
+            };
+          }
+          flow.services[cs.name] = cs;
+
+          let ce = cs.endpoints[m[2]];
+
+          if (!ce) {
+            const name = m[2];
+            ce = cs.endpoints[name] = {
+              name: name
+            };
+
+            ce.index = cs.leftSide.length;
+            cs.leftSide.push({});
+          }
+
+          if (ce) {
+            const wire = {
+              src: endpoint,
+              srcPanel: step,
+              dstPanel: cs,
+              dst: ce
+            };
+            flow.wires.push(wire);
           }
         }
       }

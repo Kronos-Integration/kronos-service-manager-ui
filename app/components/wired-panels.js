@@ -1,6 +1,24 @@
 import Ember from 'ember';
 import WiredPanels from 'npm:WiredPanels';
 
+function setupPanel(wiredPanels, step) {
+  wiredPanels.initializePanel(step);
+  step.label.textContent = step.name + (step.type ? ` (${step.type})` : '');
+
+  let l = 0,
+    r = 0;
+
+  for (const e in step.endpoints) {
+    const endpoint = step.endpoints[e];
+    if (endpoint.in) {
+      step.leftSide[l++].label.textContent = endpoint.name;
+    }
+    if (endpoint.out) {
+      step.rightSide[r++].label.textContent = endpoint.name;
+    }
+  }
+}
+
 export default Ember.Component.extend({
 
   didInsertElement() {
@@ -15,22 +33,11 @@ export default Ember.Component.extend({
     this.wiredPanels.config.headSocket = false;
 
     for (const sn in flow.steps) {
-      const step = flow.steps[sn];
-      this.wiredPanels.initializePanel(step);
-      step.label.textContent = `${sn} (${step.type})`;
+      setupPanel(this.wiredPanels, flow.steps[sn]);
+    }
 
-      let l = 0,
-        r = 0;
-
-      for (const e in step.endpoints) {
-        const endpoint = step.endpoints[e];
-        if (endpoint.in) {
-          step.leftSide[l++].label.textContent = endpoint.name;
-        }
-        if (endpoint.out) {
-          step.rightSide[r++].label.textContent = endpoint.name;
-        }
-      }
+    for (const sn in flow.services) {
+      setupPanel(this.wiredPanels, flow.services[sn]);
     }
 
     flow.wires.forEach(wire => {
