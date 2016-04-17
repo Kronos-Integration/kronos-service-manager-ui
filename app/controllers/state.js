@@ -9,13 +9,21 @@ export default Ember.Controller.extend({
     const location = `ws://${window.location.host}/state`;
     let socket = this.get('socketService').socketFor(location);
     let intervalHandler;
+    let intervalHandler2;
 
     socket.on('open', () => {
+
+      intervalHandler2 = setInterval(() => {
+        console.log('send');
+        socket.send({});
+      }, 1000);
+
       this.set('content.connected', true);
-      /*  socket.send({
-          autoUpdate: 1000
-        });*/
+      socket.send({
+        autoUpdate: 5000
+      });
       clearInterval(intervalHandler);
+      clearInterval(intervalHandler2);
     }, this);
     socket.on('close', () => {
       socket = undefined;
