@@ -1,11 +1,13 @@
 import Ember from 'ember';
 
 export default Ember.Object.extend({
-  name: '',
-  description: '',
+  name: "",
+  description: "",
   state: 'invalid',
-  steps: {},
   wires: [],
+  endpoints: {},
+  leftSide: [],
+  rightSide: [],
   isRunning() {
     return this.state === 'running';
   }

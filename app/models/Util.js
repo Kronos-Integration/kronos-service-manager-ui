@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import fetch from 'fetch';
 import Flow from './Flow';
+import Service from './Service';
 
 const flowsById = {};
 const servicesById = {};
@@ -39,7 +40,14 @@ export function allFlows() {
   return fetch('api/flow').then(response => response.json().then(flowJson => {
     return fetch('api/service').then(response => response.json().then(serviceJson => {
       serviceJson.forEach(s => {
-        servicesById[s.name] = s;
+        const service = Service.create({
+          id: s.name,
+          name: s.name,
+          state: s.state,
+          description: s.description,
+          endpoints: s.endpoints
+        });
+        servicesById[s.name] = service;
       });
 
       return createFlowsFromJSON(flowJson);
@@ -118,7 +126,7 @@ export function createFromJSON(data) {
   const flow = Flow.create({
     id: data.name,
     name: data.name,
-    url: data.name
+    description: data.description
   });
   flowsById[flow.id] = flow;
 
@@ -170,13 +178,10 @@ export function createFromJSON(data) {
           let cs = servicesById[m[1]];
           if (!cs) {
             const name = m[1];
-            cs = servicesById[name] = {
-              name: name,
-              endpoints: {},
-              state: "unknown",
-              leftSide: [],
-              rightSide: []
-            };
+            cs = servicesById[name] = Service.create({
+              id: name,
+              name: name
+            });
           }
           flow.services[cs.name] = cs;
 

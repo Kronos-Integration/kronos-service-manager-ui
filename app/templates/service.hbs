@@ -1,7 +1,5 @@
 <div class="content">
-  Name: {{content.name}}
-  State: {{content.state}}
-
+  {{content.name}} {{content.state}}
 <div class="ui relaxed celled list">
   {{#each-in content.endpoints as |name endpoint|}}
   <div class="item">
