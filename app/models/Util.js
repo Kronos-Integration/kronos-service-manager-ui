@@ -2,6 +2,8 @@ import Ember from 'ember';
 import fetch from 'fetch';
 import Flow from './Flow';
 import Service from './Service';
+import SendEndpoint from './SendEndpoint';
+import ReceiveEndpoint from './ReceiveEndpoint';
 
 const flowsById = {};
 const servicesById = {};
@@ -13,7 +15,21 @@ export function allServices() {
 
   return fetch('api/service').then(response => response.json()).then(serviceJson => {
     serviceJson.forEach(s => {
-      servicesById[s.name] = s;
+      const service = Service.create({
+        id: s.name,
+        name: s.name,
+        state: s.state,
+        description: s.description,
+        endpoints: {}
+      });
+
+      Object.keys(s.endpoints).forEach(en => {
+        const e = s.endpoints[en];
+        const ep = e.in ? new ReceiveEndpoint(en, service) : new SendEndpoint(en, service);
+        service.endpoints[ep.name] = ep;
+      });
+
+      servicesById[service.name] = service;
     });
 
     return servicesById;
@@ -45,9 +61,16 @@ export function allFlows() {
           name: s.name,
           state: s.state,
           description: s.description,
-          endpoints: s.endpoints
+          endpoints: {}
         });
-        servicesById[s.name] = service;
+
+        Object.keys(s.endpoints).forEach(en => {
+          const e = s.endpoints[en];
+          const ep = e.in ? new ReceiveEndpoint(en, service) : new SendEndpoint(en, service);
+          service.endpoints[ep.name] = ep;
+        });
+
+        servicesById[service.name] = service;
       });
 
       return createFlowsFromJSON(flowJson);
