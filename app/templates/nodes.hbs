@@ -1,0 +1,12 @@
+<div class="content">
+<div class="ui relaxed celled list">
+  {{#each-in content as |name node|}}
+  <div class="item">
+    <i class="large middle aligned icon"></i>
+    <div class="content">
+      {{#link-to 'node' node class="header"}} {{node.name}}{{/link-to}}
+    </div>
+  </div>
+  {{/each-in}}
+</div>
+</div>

@@ -6,6 +6,11 @@ const Router = Ember.Router.extend({
 });
 
 export default Router.map(function () {
+  this.route('nodes');
+  this.route('node', {
+    path: '/node/:node_id'
+  });
+
   this.route('flows');
   this.route('flow', {
     path: '/flow/:flow_id'

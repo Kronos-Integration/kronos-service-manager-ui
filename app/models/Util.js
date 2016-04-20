@@ -2,11 +2,38 @@ import Ember from 'ember';
 import fetch from 'fetch';
 import Flow from './Flow';
 import Service from './Service';
+import Node from './Node';
 import SendEndpoint from './SendEndpoint';
 import ReceiveEndpoint from './ReceiveEndpoint';
 
+const nodesById = {};
 const flowsById = {};
 const servicesById = {};
+
+export function allNodes() {
+  if (nodesById.length > 0) {
+    return nodesById;
+  }
+
+  return fetch('api/nodes').then(response => response.json()).then(nodeJson => {
+    nodeJson.forEach(s => {
+      const node = new Node(s.Node, s.Address, s.ServiceTags);
+      nodesById[node.id] = node;
+    });
+
+    return nodesById;
+  });
+}
+
+export function getNode(id) {
+  const node = nodesById[id];
+
+  if (node) {
+    return node;
+  }
+
+  return fetch(`api/nodes/${id}`).then(response => response.json());
+}
 
 export function allServices() {
   if (servicesById.length > 0) {

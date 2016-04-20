@@ -1,0 +1,11 @@
+<div class="content">
+  {{content.name}}
+  {{#each content.tags as |tag|}}
+  <div class="item">
+    <i class="large middle aligned icon"></i>
+    <div class="content">
+      {{tag}}
+    </div>
+  </div>
+  {{/each}}
+</div>

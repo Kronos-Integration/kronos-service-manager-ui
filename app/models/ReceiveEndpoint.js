@@ -2,10 +2,6 @@ import Endpoint from './Endpoint';
 
 export default class ReceiveEndpoint extends Endpoint {
 
-  set connected(other) {
-    other.connected = this;
-  }
-
   get receive() {
     return this._receive;
   }
