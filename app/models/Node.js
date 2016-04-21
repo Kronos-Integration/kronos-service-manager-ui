@@ -10,6 +10,5 @@ export default class Node {
     Object.defineProperty(this, 'tags', {
       value: tags
     });
-
   }
 }

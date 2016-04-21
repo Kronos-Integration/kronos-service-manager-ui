@@ -12,7 +12,7 @@ const servicesById = {};
 
 export function allNodes() {
   if (nodesById.length > 0) {
-    return nodesById;
+    return Promise.resolve(nodesById);
   }
 
   return fetch('api/nodes').then(response => response.json()).then(nodeJson => {
@@ -26,13 +26,7 @@ export function allNodes() {
 }
 
 export function getNode(id) {
-  const node = nodesById[id];
-
-  if (node) {
-    return node;
-  }
-
-  return fetch(`api/nodes/${id}`).then(response => response.json());
+  return allNodes().then(all => all[id]);
 }
 
 export function allServices() {
