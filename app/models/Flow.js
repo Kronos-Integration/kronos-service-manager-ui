@@ -1,12 +1,10 @@
-import Ember from 'ember';
+import Step from './Step';
 
-export default Ember.Object.extend({
-  name: '',
-  description: '',
-  state: 'invalid',
-  steps: {},
-  wires: [],
-  isRunning() {
-    return this.state === 'running';
+export default class Flow extends Step {
+  constructor(config, owner) {
+    super(config, owner);
+
+    this.steps = {};
+    this.wires = [];
   }
-});
+}

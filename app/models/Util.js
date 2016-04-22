@@ -138,15 +138,13 @@ export function createFlowsFromJSON(json) {
 }
 
 export function createFromJSON(data) {
-
-  const flow = Flow.create({
-    id: data.name,
+  const flow = new Flow({
     name: data.name,
     description: data.description
   });
+
   flowsById[flow.id] = flow;
 
-  flow.description = data.description;
   flow.steps = data.steps;
   flow.services = {};
 
