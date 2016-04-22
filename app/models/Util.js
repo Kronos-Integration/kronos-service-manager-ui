@@ -1,3 +1,5 @@
+/*  Promise */
+
 import Ember from 'ember';
 import fetch from 'fetch';
 import Flow from './Flow';
@@ -31,17 +33,15 @@ export function getNode(id) {
 
 export function allServices() {
   if (servicesById.length > 0) {
-    return servicesById;
+    return Promise.resolve(servicesById);
   }
 
   return fetch('api/service').then(response => response.json()).then(serviceJson => {
     serviceJson.forEach(s => {
-      const service = Service.create({
-        id: s.name,
+      const service = new Service({
         name: s.name,
         state: s.state,
-        description: s.description,
-        endpoints: {}
+        description: s.description
       });
 
       Object.keys(s.endpoints).forEach(en => {
@@ -50,7 +50,7 @@ export function allServices() {
         service.endpoints[ep.name] = ep;
       });
 
-      servicesById[service.name] = service;
+      servicesById[service.id] = service;
     });
 
     return servicesById;
@@ -58,15 +58,7 @@ export function allServices() {
 }
 
 export function getService(id) {
-  const service = servicesById[id];
-
-  if (service) {
-    if (service.state !== 'invalid') {
-      return service;
-    }
-  }
-
-  return fetch(`api/service/${id}`).then(response => response.json());
+  return allServices().then(all => all[id]);
 }
 
 export function allFlows() {
@@ -74,29 +66,9 @@ export function allFlows() {
     return flowsById;
   }
 
-  return fetch('api/flow').then(response => response.json().then(flowJson => {
-    return fetch('api/service').then(response => response.json().then(serviceJson => {
-      serviceJson.forEach(s => {
-        const service = Service.create({
-          id: s.name,
-          name: s.name,
-          state: s.state,
-          description: s.description,
-          endpoints: {}
-        });
-
-        Object.keys(s.endpoints).forEach(en => {
-          const e = s.endpoints[en];
-          const ep = e.in ? new ReceiveEndpoint(en, service) : new SendEndpoint(en, service);
-          service.endpoints[ep.name] = ep;
-        });
-
-        servicesById[service.name] = service;
-      });
-
-      return createFlowsFromJSON(flowJson);
-    }));
-  }));
+  return fetch('api/flow').then(response => response.json().then(flowJson =>
+    createFlowsFromJSON(flowJson)
+  ));
 }
 
 export function getFlow(id) {
@@ -222,8 +194,7 @@ export function createFromJSON(data) {
           let cs = servicesById[m[1]];
           if (!cs) {
             const name = m[1];
-            cs = servicesById[name] = Service.create({
-              id: name,
+            cs = servicesById[name] = new Service({
               name: name
             });
           }

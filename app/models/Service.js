@@ -1,14 +1,25 @@
-import Ember from 'ember';
+import EndpointsMixin from './EndpointsMixin';
 
-export default Ember.Object.extend({
-  name: "",
-  description: "",
-  state: 'invalid',
-  wires: [],
-  endpoints: {},
-  leftSide: [],
-  rightSide: [],
-  isRunning() {
-    return this.state === 'running';
+class _Service {}
+
+export default class Service extends EndpointsMixin(_Service) {
+  constructor(config, owner) {
+    super();
+
+    if (owner === undefined) {
+      owner = this;
+    }
+
+    Object.defineProperty(this, 'name', {
+      value: config.name
+    });
+
+    Object.defineProperty(this, 'id', {
+      value: this.name
+    });
+
+    Object.defineProperty(this, 'owner', {
+      value: owner
+    });
   }
-});
+}
