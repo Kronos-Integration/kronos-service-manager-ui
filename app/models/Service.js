@@ -22,4 +22,8 @@ export default class Service extends EndpointsMixin(_Service) {
       value: owner
     });
   }
+
+  isRunning() {
+    return this.state === 'running';
+  }
 }
