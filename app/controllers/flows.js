@@ -2,6 +2,7 @@ import Ember from 'ember';
 import Util from '../models/Util';
 
 export default Ember.Controller.extend({
+  /*
   socketService: Ember.inject.service('websockets'),
   init() {
     this._super.apply(this, arguments);
@@ -46,4 +47,5 @@ export default Ember.Controller.extend({
       processFile(files[0]);
     }
   }
+  */
 });
