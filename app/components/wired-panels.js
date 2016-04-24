@@ -8,13 +8,23 @@ function setupPanel(wiredPanels, step) {
   let l = 0,
     r = 0;
 
+  console.log(`setupPanel: ${step.name}`);
+
   for (const e in step.endpoints) {
     const endpoint = step.endpoints[e];
-    if (endpoint.in) {
-      step.leftSide[l++].label.textContent = endpoint.name;
+    if (endpoint.isIn) {
+      if (step.leftSide === undefined || step.leftSide[l] === undefined) {
+        console.log(`${step.name} / ${e} ${l} leftSide undefined`);
+      } else {
+        step.leftSide[l++].label.textContent = endpoint.name;
+      }
     }
-    if (endpoint.out) {
-      step.rightSide[r++].label.textContent = endpoint.name;
+    if (endpoint.isOut) {
+      if (step.rightSide === undefined || step.rightSide[r] === undefined) {
+        console.log(`${step.name} / ${e} ${r} rightSide undefined`);
+      } else {
+        step.rightSide[r++].label.textContent = endpoint.name;
+      }
     }
   }
 }
@@ -26,8 +36,6 @@ export default Ember.Component.extend({
 
     const flow = this.get('flow');
     const element = document.getElementById('wired-panels');
-    //console.log(`element: ${this.$()}`);
-    //const element = this.$();
 
     this.wiredPanels = new WiredPanels(element);
     this.wiredPanels.config.headSocket = false;

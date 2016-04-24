@@ -5,6 +5,7 @@ export default class Flow extends Step {
     super(config, owner);
 
     this.steps = {};
+    this.services = {};
     this.wires = [];
   }
 }

@@ -10,8 +10,6 @@ export default (superclass) => class extends superclass {
       value: endpoints
     });
 
-
-
     // wires
     this.leftSide = [];
     this.rightSide = [];
@@ -21,6 +19,16 @@ export default (superclass) => class extends superclass {
    * @param {Endpoint} ep
    */
   addEndpoint(ep) {
+    if (ep.isIn) {
+      ep.index = this.leftSide.length;
+      this.leftSide.push({});
+    }
+
+    if (ep.isOut) {
+      ep.index = this.rightSide.length;
+      this.rightSide.push({});
+    }
+
     this.endpoints[ep.name] = ep;
     return ep;
   }

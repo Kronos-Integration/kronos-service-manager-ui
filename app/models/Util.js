@@ -2,6 +2,7 @@
 
 import Ember from 'ember';
 import fetch from 'fetch';
+import Step from './Step';
 import Flow from './Flow';
 import Service from './Service';
 import Node from './Node';
@@ -138,6 +139,8 @@ export function createFlowsFromJSON(json) {
 }
 
 export function createFromJSON(data) {
+  const promises = [];
+
   const flow = new Flow({
     name: data.name,
     description: data.description
@@ -145,29 +148,18 @@ export function createFromJSON(data) {
 
   flowsById[flow.id] = flow;
 
-  flow.steps = data.steps;
-  flow.services = {};
-
   for (const s in data.steps) {
-    const step = data.steps[s];
+    const sd = data.steps[s];
+    sd.name = s;
+    const step = new Step(sd, flow);
+    flow.steps[step.name] = step;
+  }
 
-    step.leftSide = [];
-    step.rightSide = [];
+  for (const sn in flow.steps) {
+    const step = flow.steps[sn];
 
     for (const e in step.endpoints) {
       const endpoint = step.endpoints[e];
-
-      endpoint.owner = flow;
-      endpoint.name = e;
-
-      if (endpoint.in) {
-        endpoint.index = step.leftSide.length;
-        step.leftSide.push({});
-      }
-      if (endpoint.out) {
-        endpoint.index = step.rightSide.length;
-        step.rightSide.push({});
-      }
 
       if (endpoint.target) {
         let m = endpoint.target.match(/^([^\/]+)\/(.*)/);
@@ -189,40 +181,35 @@ export function createFromJSON(data) {
 
         m = endpoint.target.match(/^([^\/]+):(.*)/);
         if (m) {
-          let cs = servicesById[m[1]];
-          if (!cs) {
-            const name = m[1];
-            cs = servicesById[name] = new Service({
-              name: name
-            });
-          }
-          flow.services[cs.name] = cs;
+          const sn = m[1];
+          const en = m[2];
 
-          let ce = cs.endpoints[m[2]];
+          promises.push(getService(sn).then(service => {
+            flow.services[service.name] = service;
 
-          if (!ce) {
-            const name = m[2];
-            ce = cs.endpoints[name] = {
-              name: name
-            };
+            const ce = service.endpoints[en];
 
-            ce.index = cs.leftSide.length;
-            cs.leftSide.push({});
-          }
+            if (ce) {
+              const wire = {
+                src: endpoint,
+                srcPanel: step,
+                dstPanel: service,
+                dst: ce
+              };
+              //flow.wires.push(wire);
+            } else {
+              console.log(`endpoint missing: ${service.name} / ${en}`);
+            }
 
-          if (ce) {
-            const wire = {
-              src: endpoint,
-              srcPanel: step,
-              dstPanel: cs,
-              dst: ce
-            };
-            flow.wires.push(wire);
-          }
+            //console.log(`service: ${service.name}`);
+          }));
         }
       }
     }
-    step.name = s;
+  }
+
+  if (promises.length) {
+    return Promise.all(promises).then(() => flow);
   }
 
   return flow;
