@@ -19,12 +19,19 @@ export function allNodes() {
   }
 
   return fetch('api/nodes').then(response => response.json()).then(nodeJson => {
-    nodeJson.forEach(s => {
-      const node = new Node(s.Node, s.Address, s.ServiceTags);
-      nodesById[node.id] = node;
-    });
-
+    updateNodes(nodeJson);
     return nodesById;
+  });
+}
+
+export function updateNodes(nodeJson) {
+  Object.keys(nodesById).forEach(n => {
+    delete nodesById[n];
+  });
+
+  nodeJson.forEach(s => {
+    const node = new Node(s.Node, s.Address, s.ServiceTags);
+    nodesById[node.id] = node;
   });
 }
 
@@ -89,7 +96,7 @@ export function createFlow(json) {
   return fetch('api/flow', {
     method: 'PUT',
     body: JSON.stringify(json)
-  }).then((response) => response.json().then(json => console.log(`created: ${JSON.stringify(json)}`)));
+  }).then(response => response.json().then(json => console.log(`created: ${JSON.stringify(json)}`)));
 }
 
 export function deleteFlowLocally(id) {
