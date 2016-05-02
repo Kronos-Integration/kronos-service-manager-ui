@@ -1,13 +1,13 @@
 {
   "name": "kronos-service-manager-ui",
   "dependencies": {
-    "ember": "~2.5.0",
+    "ember": "~2.5.1",
     "ember-cli-shims": "0.1.1",
     "ember-cli-test-loader": "0.2.2",
     "ember-qunit-notifications": "0.1.0",
     "semantic-ui": "~2.1.8",
     "moment": ">= 2.10.6",
     "moment-timezone": ">= 0.4.1",
-    "uri.js": "^1.17.1"
+    "uri.js": "^1.18.0"
   }
 }
