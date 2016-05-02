@@ -1,11 +1,13 @@
 <div class="content">
   {{content.name}}
+  <div class="ui list">
   {{#each content.tags as |tag|}}
-  <div class="item">
-    <i class="large middle aligned icon"></i>
-    <div class="content">
-      {{tag}}
-    </div>
-  </div>
+    <a class="item">
+       <i class="right triangle icon"></i>
+       <div class="content">
+         <div class="header">{{tag}}</div>
+       </div>
+     </a>
   {{/each}}
+  </div>
 </div>
