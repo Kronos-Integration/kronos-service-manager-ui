@@ -17,7 +17,7 @@ export default class Service extends EndpointsMixin(_Service) {
     });
 
     Object.defineProperty(this, 'id', {
-      value: this.name
+      value: config.id || this.name
     });
 
     Object.defineProperty(this, 'owner', {

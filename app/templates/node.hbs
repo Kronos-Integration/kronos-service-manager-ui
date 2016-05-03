@@ -1,13 +1,13 @@
 <div class="content">
   {{content.name}}
   <div class="ui list">
-  {{#each content.tags as |tag|}}
+    {{#each-in content.steps as |name step|}}
     <a class="item">
        <i class="right triangle icon"></i>
        <div class="content">
-         <div class="header">{{tag}}</div>
+         <div class="header">{{name}}</div>
        </div>
-     </a>
-  {{/each}}
+    </a>
+    {{/each-in}}
   </div>
 </div>
