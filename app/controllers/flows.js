@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import Util from '../models/Util';
+import fetch from 'fetch';
 
 export default Ember.Controller.extend({
   /*
@@ -21,16 +21,23 @@ export default Ember.Controller.extend({
       console.log('close');
     }, this);
   },
+*/
 
   actions: {
     "delete": function (flow) {
-      Util.deleteFlow(flow.id);
+      return fetch(`api/flow/${flow.id}`, {
+        method: 'DELETE'
+      }).then(() => {});
     },
     stop(flow) {
-      Util.stopFlow(flow.id);
+      fetch(`api/flow/${flow.id}/stop`, {
+        method: 'POST'
+      }).then(response => response.json().then(json => console.log(`stop: ${JSON.stringify(json)}`)));
     },
     start(flow) {
-      Util.startFlow(flow.id);
+      fetch(`api/flow/${flow.id}/start`, {
+        method: 'POST'
+      }).then(response => response.json().then(json => console.log(`start: ${JSON.stringify(json)}`)));
     },
     create() {
       const files = document.getElementById('file').files;
@@ -38,7 +45,10 @@ export default Ember.Controller.extend({
       function processFile(file) {
         const reader = new FileReader();
         reader.onload = () => {
-          Util.createFlow(JSON.parse(reader.result));
+          fetch('api/flow', {
+            method: 'PUT',
+            body: reader.result
+          }).then(response => response.json().then(json => console.log(`created: ${JSON.stringify(json)}`)));
         };
 
         reader.readAsText(file);
@@ -47,5 +57,4 @@ export default Ember.Controller.extend({
       processFile(files[0]);
     }
   }
-  */
 });

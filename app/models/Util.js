@@ -92,38 +92,6 @@ export function getFlow(id) {
     json)));
 }
 
-export function createFlow(json) {
-  return fetch('api/flow', {
-    method: 'PUT',
-    body: JSON.stringify(json)
-  }).then(response => response.json().then(json => console.log(`created: ${JSON.stringify(json)}`)));
-}
-
-export function deleteFlowLocally(id) {
-  delete flowsById[id];
-}
-
-export function deleteFlow(id) {
-  return fetch(`api/flow/${id}`, {
-    method: 'DELETE'
-  }).then(() => {
-    delete flowsById[id];
-  });
-}
-
-export function stopFlow(id) {
-  return fetch(`api/flow/${id}/stop`, {
-    method: 'POST'
-  }).then(response => response.json().then(json => console.log(`stop: ${JSON.stringify(json)}`)));
-}
-
-export function startFlow(id) {
-  return fetch(`api/flow/${id}/start`, {
-    method: 'POST'
-  }).then(response => response.json().then(json => console.log(`start: ${JSON.stringify(json)}`)));
-}
-
-
 export function createFlowsFromJSON(json) {
   json.forEach(e => {
     const ObjectPromiseProxy = Ember.ObjectProxy.extend(Ember.PromiseProxyMixin);
