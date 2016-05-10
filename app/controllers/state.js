@@ -35,6 +35,10 @@ export default Ember.Controller.extend({
         this.set('content.memory.heapUsed', data.memory.heapUsed);
         this.set('content.memory.rss', data.memory.rss);
       }
+      if (data.cpu) {
+        this.set('content.cpu.user', data.cpu.user);
+        this.set('content.cpu.system', data.cpu.system);
+      }
     }, this);
   }
 });
