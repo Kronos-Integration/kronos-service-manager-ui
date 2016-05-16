@@ -24,21 +24,18 @@
     "node": ">=6.1.0"
   },
   "license": "BSD-2-Clause",
-  "contributors": [
-    {
-      "name": "Torsten Link",
-      "email": "torstenlink@gmx.de"
-    },
-    {
-      "name": "Markus Felten",
-      "email": "markus.felten@gmx.de"
-    }
-  ],
+  "contributors": [{
+    "name": "Torsten Link",
+    "email": "torstenlink@gmx.de"
+  }, {
+    "name": "Markus Felten",
+    "email": "markus.felten@gmx.de"
+  }],
   "devDependencies": {
     "WiredPanels": "git+https://github.com/Lichtso/WiredPanels.git#babel",
     "broccoli-asset-rev": "^2.4.2",
     "ember-browserify": "^1.1.9",
-    "ember-cli": "^2.5.0",
+    "ember-cli": "2.6.0-beta.2",
     "ember-cli-app-version": "^1.0.0",
     "ember-cli-babel": "^5.1.6",
     "ember-cli-dependency-checker": "^1.2.0",
