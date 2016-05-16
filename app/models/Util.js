@@ -130,6 +130,30 @@ export function createFromJSON(data) {
     flow.steps[step.name] = step;
   }
 
+
+  function makeServiceEndpoint(en, service) {
+    flow.services[service.name] = service;
+
+    const ce = service.endpoints[en];
+
+    if (ce) {
+      /*
+      const wire = {
+        src: endpoint,
+        srcPanel: step,
+        dstPanel: service,
+        dst: ce
+      };
+      flow.wires.push(wire);
+      */
+    } else {
+      console.log(`endpoint missing: ${service.name} / ${en}`);
+    }
+
+    //console.log(`service: ${service.name}`);
+    return Promise.resolve();
+  }
+
   for (const sn in flow.steps) {
     const step = flow.steps[sn];
 
@@ -158,26 +182,7 @@ export function createFromJSON(data) {
         if (m) {
           const sn = m[1];
           const en = m[2];
-
-          promises.push(getService(sn).then(service => {
-            flow.services[service.name] = service;
-
-            const ce = service.endpoints[en];
-
-            if (ce) {
-              const wire = {
-                src: endpoint,
-                srcPanel: step,
-                dstPanel: service,
-                dst: ce
-              };
-              //flow.wires.push(wire);
-            } else {
-              console.log(`endpoint missing: ${service.name} / ${en}`);
-            }
-
-            //console.log(`service: ${service.name}`);
-          }));
+          promises.push(getService(sn).then(service => makeServiceEndpoint(en, service)));
         }
       }
     }
