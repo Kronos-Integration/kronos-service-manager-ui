@@ -1,6 +1,6 @@
 /* jshint node: true */
 
-module.exports = function(environment) {
+module.exports = function (environment) {
   var ENV = {
     modulePrefix: 'kronos-service-manager-ui',
     environment: environment,
@@ -18,24 +18,24 @@ module.exports = function(environment) {
       // when it is created
     },
     contentSecurityPolicy: {
-        'default-src': "'none'",
-        'script-src': "'self'",
-        'font-src': "'self' 'unsafe-inline' https://fonts.gstatic.com/ data:",
-        'connect-src': "'self' ws://localhost:49154 ws://localhost:4200", // Allow data (ajax/websocket) from http://localhost:3001
-        'img-src': "'self'",
-        'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com/", // Allow inline styles
-        'media-src': "'self'"
+      'default-src': "'none'",
+      'script-src': "'self'",
+      'font-src': "'self' 'unsafe-inline' https://fonts.gstatic.com/ data:",
+      'connect-src': "'self' ws://localhost:49154 ws://localhost:4200", // Allow data (ajax/websocket) from http://localhost:3001
+      'img-src': "'self'",
+      'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com/", // Allow inline styles
+      'media-src': "'self'"
     }
   };
 
-/*
-  ENV['simple-auth'] = {
-          store: 'simple-auth-session-store:local-storage',
-          authorizer: 'authorizer:custom',
-          crossOriginWhitelist: ['http://localhost:3001/'],
-          routeAfterAuthentication: '/protected'
-      };
-*/
+  /*
+    ENV['simple-auth'] = {
+            store: 'simple-auth-session-store:local-storage',
+            authorizer: 'authorizer:custom',
+            crossOriginWhitelist: ['http://localhost:3001/'],
+            routeAfterAuthentication: '/protected'
+        };
+  */
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
@@ -58,7 +58,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.baseURL = '/kronos/kronos-service-manager-ui';
   }
 
   return ENV;
