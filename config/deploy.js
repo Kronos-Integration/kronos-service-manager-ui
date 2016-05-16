@@ -29,8 +29,6 @@ module.exports = function (deployTarget) {
       delete: false,
       args: ['--verbose', '-ztl']
     };
-
-    console.log(`rsync.privateKey: ${ENV.rsync.privateKey}`);
   }
 
   return ENV;
