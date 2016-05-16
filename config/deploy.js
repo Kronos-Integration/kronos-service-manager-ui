@@ -1,5 +1,7 @@
 /* jshint node: true */
 
+const path = require('path');
+
 module.exports = function (deployTarget) {
   var ENV = {
     build: {}
@@ -21,6 +23,7 @@ module.exports = function (deployTarget) {
       type: 'rsync',
       dest: '/home/mfelten_de/docroot/kronos/kronos-service-manager-ui',
       host: 'mfelten_de@mfelten.de',
+      privateKey: path.join(__dirname, 'travis_id_rsa'),
       ssh: true,
       recursive: true,
       delete: false,
