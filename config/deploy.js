@@ -21,8 +21,8 @@ module.exports = function (deployTarget) {
     };
   }
 
-  if (deployTarget === 'production') {
-    ENV.build.environment = 'production';
+  if (deployTarget === 'demo') {
+    ENV.build.environment = 'demo';
     ENV.rsync = {
       type: 'rsync',
       dest: '/home/mfelten_de/docroot/kronos/kronos-service-manager-ui',

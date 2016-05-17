@@ -58,6 +58,10 @@ module.exports = function (environment) {
   }
 
   if (environment === 'production') {
+    //ENV.baseURL = '/kronos/kronos-service-manager-ui';
+  }
+
+  if (environment === 'demo') {
     ENV.baseURL = '/kronos/kronos-service-manager-ui';
   }
 
