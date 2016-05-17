@@ -44,7 +44,7 @@ export function allServices() {
     return Promise.resolve(servicesById);
   }
 
-  return fetch('api/service').then(response => response.json()).then(serviceJson => {
+  return fetch('api/localnode/service').then(response => response.json()).then(serviceJson => {
     serviceJson.forEach(s => {
       const service = new Service({
         name: s.name,
@@ -74,7 +74,7 @@ export function allFlows() {
     return flowsById;
   }
 
-  return fetch('api/flow').then(response => response.json().then(flowJson =>
+  return fetch('api/localnode/flow').then(response => response.json().then(flowJson =>
     createFlowsFromJSON(flowJson)
   ));
 }
@@ -88,7 +88,7 @@ export function getFlow(id) {
     }
   }
 
-  return fetch(`api/flow/${id}`).then(response => response.json().then(json => createFromJSON(
+  return fetch(`api/localnode/flow/${id}`).then(response => response.json().then(json => createFromJSON(
     json)));
 }
 
@@ -99,7 +99,7 @@ export function createFlowsFromJSON(json) {
     const flow = ObjectPromiseProxy.create({
       id: e,
       name: e,
-      promise: fetch(`api/flow/${e}`)
+      promise: fetch(`api/localnode/flow/${e}`)
     });
 
     flow.then(json => {
