@@ -12,11 +12,11 @@ module.exports = function (deployTarget) {
   }
 
   if (deployTarget === 'staging') {
-    ENV.build.environment = 'development';
+    ENV.build.environment = 'production';
     ENV.plugins = ['build', 'archive'];
     ENV.archive = {
       archivePath: 'tmp/deploy-archive',
-      packedDirName: '',
+      packedDirName: 'docroot',
       archiveName: 'kronos-service-manager-ui.tar'
     };
   }
