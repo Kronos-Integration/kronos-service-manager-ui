@@ -33,6 +33,9 @@ after_success:
 deploy:
   - provider: script
     skip_cleanup: true
-    script: ember deploy production
+    script:
+      - ember deploy production
+      - ember deploy staging
+      - scp -i config/travis_id_rsa tmp/deploy-archive/kronos-service-manager-ui.tar mfelten_de@mfelten.de:/home/mfelten_de/docroot/kronos/kronos-service-manager-ui.tar',
     on:
       branch: master
