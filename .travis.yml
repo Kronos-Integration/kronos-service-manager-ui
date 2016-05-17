@@ -14,8 +14,7 @@ notifications:
     - markus.felten@gmx.de
 before_install:
   - openssl aes-256-cbc -K $encrypted_a8184e2e8c6b_key -iv $encrypted_a8184e2e8c6b_iv -in config/travis_id_rsa.enc -out config/travis_id_rsa -d
-  - cp config/travis_id_rsa ~/.ssh/id_rsa
-  - chmod 400 config/travis_id_rsa ~/.ssh/id_rsa
+  - chmod 400 config/travis_id_rsa
   - npm config set spin false
   - npm install -g bower
   - npm install phantomjs-prebuilt

@@ -5,12 +5,10 @@ const path = require('path');
 module.exports = function (deployTarget) {
   var ENV = {
     build: {}
-    // include other plugin configuration that applies to all deploy targets here
   };
 
   if (deployTarget === 'development') {
     ENV.build.environment = 'development';
-    // configure other plugins for development deploy target here
   }
 
   if (deployTarget === 'staging') {
