@@ -9,6 +9,10 @@ import Node from './Node';
 import SendEndpoint from './SendEndpoint';
 import ReceiveEndpoint from './ReceiveEndpoint';
 
+export function nodeId(params) {
+  return params.node_id ? params.node_id : 'localnode';
+}
+
 const nodesById = {};
 const flowsById = {};
 const servicesById = {};
