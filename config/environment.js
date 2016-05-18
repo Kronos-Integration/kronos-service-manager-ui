@@ -14,8 +14,7 @@ module.exports = function (environment) {
     },
 
     APP: {
-      // Here you can pass flags/options to your application instance
-      // when it is created
+      version: '1.0.0'
     },
     contentSecurityPolicy: {
       'default-src': "'none'",
@@ -58,7 +57,6 @@ module.exports = function (environment) {
   }
 
   if (environment === 'production') {
-    //ENV.baseURL = '/kronos/kronos-service-manager-ui';
   }
 
   if (environment === 'demo') {
