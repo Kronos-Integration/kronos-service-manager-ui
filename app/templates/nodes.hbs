@@ -1,12 +1,22 @@
 <div class="content">
-<div class="ui relaxed celled list">
-  {{#each-in content as |name node|}}
-  <div class="item">
-    <i class="large middle aligned icon"></i>
-    <div class="content">
-      {{#link-to 'node' node class="header"}} {{node.name}}{{/link-to}}
-    </div>
-  </div>
-  {{/each-in}}
-</div>
+  <table class="ui sortable celled table">
+    <thead>
+      <tr>
+        <th class="">Name</th>
+        <th class="">Address</th>
+        <th class="">Port</th>
+        <th class="">Modified</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each-in content as |name node|}}
+      <tr>
+        <td>{{#link-to 'node' node}} {{node.name}}{{/link-to}}</td>
+        <td>{{node.ServiceAddress}}</td>
+        <td>{{node.ServicePort}}</td>
+        <td>{{node.ModifyIndex}}</td>
+      </tr>
+      {{/each-in}}
+    </tbody>
+  </table>
 </div>

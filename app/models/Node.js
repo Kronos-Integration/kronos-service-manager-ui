@@ -2,16 +2,24 @@ import Service from './Service';
 
 export default class Node extends Service {
 
-  constructor(name, id, tags) {
+  constructor(name, id, json) {
     super({
       name: name,
       id: id
     });
 
+    for (const att of['ServicePort', 'ServiceAddress', 'CreateIndex', 'ModifyIndex']) {
+      Object.defineProperty(this, att, {
+        value: json[att]
+      });
+    }
+
     const steps = {};
     const services = {};
 
-    tags.forEach(t => {
+    //console.log(json);
+
+    json.ServiceTags.forEach(t => {
       const m = t.match(/^([^:]+):(.*)/);
 
       if (m) {
