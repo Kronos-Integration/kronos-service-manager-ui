@@ -23,9 +23,7 @@ export default Ember.Controller.extend({
     }, this);
     socket.on('close', () => {
       this.set('content.connected', false);
-      intervalHandler = setInterval(() => {
-        socket.reconnect();
-      }, 5000);
+      intervalHandler = setInterval(() => socket.reconnect(), 5000);
     }, this);
     socket.on('message', event => {
       const data = JSON.parse(event.data);

@@ -20,9 +20,7 @@ export default Ember.Controller.extend({
       clearInterval(intervalHandler);
     }, this);
     socket.on('close', () => {
-      intervalHandler = setInterval(() => {
-        socket.reconnect();
-      }, 5000);
+      intervalHandler = setInterval(() => socket.reconnect(), 5000);
     }, this);
     socket.on('message', event => {
       console.log(`nodes: ${event.data}`);
