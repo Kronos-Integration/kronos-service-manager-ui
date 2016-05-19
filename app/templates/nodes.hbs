@@ -1,22 +1,22 @@
 <div class="content">
-  <table class="ui sortable celled table">
-    <thead>
-      <tr>
-        <th class="">Name</th>
-        <th class="">Address</th>
-        <th class="">Port</th>
-        <th class="">Modified</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each-in content as |name node|}}
-      <tr>
-        <td>{{#link-to 'node' node}} {{node.name}}{{/link-to}}</td>
-        <td>{{node.ServiceAddress}}</td>
-        <td>{{node.ServicePort}}</td>
-        <td>{{node.ModifyIndex}}</td>
-      </tr>
-      {{/each-in}}
-    </tbody>
-  </table>
+  <div class="ui four cards">
+    {{#each-in content as |name node|}}
+    <div class="card">
+      <div class="content">
+        <div class="header">{{#link-to 'node' node}} {{node.name}}{{/link-to}}</div>
+        <div class="meta">
+          <span class="right floated time">{{node.CreateIndex}} : {{node.ModifyIndex}}</span>
+          <span class="category">{{node.ServiceAddress}} : {{node.ServicePort}}</span>
+        </div>
+        <div class="description">
+            {{#each-in node.steps as |name step|}}
+            <div class="ui list">
+              <div class="item">{{name}}</div>
+            </div>
+            {{/each-in}}
+        </div>
+      </div>
+    </div>
+    {{/each-in}}
+  </div>
 </div>

@@ -1,13 +1,28 @@
 <div class="content">
   {{content.name}}
-  <div class="ui list">
-    {{#each-in content.steps as |name step|}}
-    <a class="item">
-       <i class="right triangle icon"></i>
-       <div class="content">
-         <div class="header">{{name}}</div>
-       </div>
-    </a>
-    {{/each-in}}
-  </div>
+
+  {{#ui-accordion}}
+    {{#ui-accordion-section title='Registry' active=true}}
+    Service Address {{content.ServiceAddress}}
+    Service Port {{content.ServicePort}}
+    {{/ui-accordion-section}}
+    {{#ui-accordion-section title='Modification'}}
+    {{content.ModifyIndex}}
+    {{/ui-accordion-section}}
+
+    {{#ui-accordion-section title='Services'}}
+      <div class="ui list">
+      {{#each-in content.services as |name service|}}
+        <div class="item">{{name}}</div>
+      {{/each-in}}
+      </div>
+    {{/ui-accordion-section}}
+    {{#ui-accordion-section title='Steps'}}
+    <div class="ui list">
+      {{#each-in content.steps as |name step|}}
+        <div class="item">{{name}}</div>
+      {{/each-in}}
+    </div>
+    {{/ui-accordion-section}}
+  {{/ui-accordion}}
 </div>
