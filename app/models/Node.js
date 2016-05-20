@@ -2,13 +2,13 @@ import Service from './Service';
 
 export default class Node extends Service {
 
-  constructor(name, id, json) {
+  constructor(json) {
     super({
-      name: name,
-      id: id
+      name: json.ServiceName,
+      id: json.ServiceID
     });
 
-    for (const att of['ServicePort', 'ServiceAddress', 'CreateIndex', 'ModifyIndex']) {
+    for (const att of['Node', 'ServicePort', 'ServiceAddress', 'CreateIndex', 'ModifyIndex']) {
       Object.defineProperty(this, att, {
         value: json[att]
       });
@@ -16,8 +16,6 @@ export default class Node extends Service {
 
     const steps = {};
     const services = {};
-
-    //console.log(json);
 
     json.ServiceTags.forEach(t => {
       const m = t.match(/^([^:]+):(.*)/);
@@ -46,6 +44,5 @@ export default class Node extends Service {
     Object.defineProperty(this, 'services', {
       value: services
     });
-
   }
 }

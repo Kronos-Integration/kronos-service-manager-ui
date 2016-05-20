@@ -34,7 +34,7 @@ export function updateNodes(nodeJson) {
   });
 
   nodeJson.forEach(s => {
-    const node = new Node(s.Node, s.serviceID, s);
+    const node = new Node(s);
     nodesById[node.id] = node;
   });
 }

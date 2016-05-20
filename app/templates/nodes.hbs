@@ -3,7 +3,7 @@
     {{#each-in content as |name node|}}
     <div class="card">
       <div class="content">
-        <div class="header">{{#link-to 'node' node}} {{node.name}}{{/link-to}}</div>
+        <div class="header">{{#link-to 'node' node}} {{node.name}} @ {{node.Node}} {{/link-to}}</div>
         <div class="meta">
           <span class="right floated time">{{node.CreateIndex}} : {{node.ModifyIndex}}</span>
           <span class="category">{{node.ServiceAddress}} : {{node.ServicePort}}</span>
