@@ -1,4 +1,4 @@
-<div class="ui menu">
+<div class="ui fixed menu">
   <div class="header active item">{{#link-to 'index'}}Kronos{{/link-to}}</div>
   {{#link-to 'nodes' class="item"}}Nodes{{/link-to}}
   {{#link-to 'flows' class="item"}}Flows{{/link-to}}
@@ -8,8 +8,6 @@
     {{#link-to 'about' class="item"}}About{{/link-to}}
   </div>
 </div>
-<div class="row">
-  <div class="column">
+<div class="ui main container">
     {{outlet}}
-  </div>
 </div>

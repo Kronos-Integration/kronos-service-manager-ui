@@ -77,3 +77,7 @@
 /* .LinkedBoxes .arrow {
     marker-end: url(#arrowMarker);
 } */
+
+.main.container {
+  margin-top: 5em;
+}
