@@ -24,13 +24,16 @@
     "node": ">=6.2.0"
   },
   "license": "BSD-2-Clause",
-  "contributors": [{
-    "name": "Torsten Link",
-    "email": "torstenlink@gmx.de"
-  }, {
-    "name": "Markus Felten",
-    "email": "markus.felten@gmx.de"
-  }],
+  "contributors": [
+    {
+      "name": "Torsten Link",
+      "email": "torstenlink@gmx.de"
+    },
+    {
+      "name": "Markus Felten",
+      "email": "markus.felten@gmx.de"
+    }
+  ],
   "devDependencies": {
     "WiredPanels": "git+https://github.com/Lichtso/WiredPanels.git#babel",
     "broccoli-asset-rev": "^2.4.2",
@@ -60,6 +63,6 @@
     "ember-resolver": "^2.0.3",
     "ember-websockets": "3.0.0",
     "loader.js": "^4.0.7",
-    "semantic-release": "6.2.2"
+    "semantic-release": "6.3.0"
   }
 }
