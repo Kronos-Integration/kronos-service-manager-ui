@@ -5,13 +5,15 @@ export default Ember.Controller.extend({
 
   socketService: Ember.inject.service('websockets'),
 
+  get location() {
+    return `ws://${window.location.host}/nodes`;
+  },
+
   init() {
     this._super.apply(this, arguments);
 
-    const location = `ws://${window.location.host}/nodes`;
-
     let intervalHandler;
-    let socket = this.get('socketService').socketFor(location);
+    let socket = this.get('socketService').socketFor(this.location);
 
     socket.on('open', () => {
       socket.send(JSON.stringify({
@@ -23,8 +25,15 @@ export default Ember.Controller.extend({
       intervalHandler = setInterval(() => socket.reconnect(), 5000);
     }, this);
     socket.on('message', event => {
-      console.log(`nodes: ${event.data}`);
+      console.log(`Nodes update`);
       Util.updateNodes(JSON.parse(event.data));
+      //console.log(`content: ${JSON.stringify(this.get('content'))}`);
+      this.set('content', Util.allNodes());
+      //this.set('model', Util.allNodes());
     }, this);
+  },
+
+  willDestroyElement() {
+    this.get('socketService').closeSocketFor(this.location);
   }
 });

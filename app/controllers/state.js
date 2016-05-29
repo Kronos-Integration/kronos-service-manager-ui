@@ -5,13 +5,16 @@ export default Ember.Controller.extend({
   socketService: Ember.inject.service('websockets'),
   socketRef: null,
 
+  get location() {
+    return `ws://${window.location.host}/state`;
+  },
+
   init() {
     this._super.apply(this, arguments);
 
-    const location = `ws://${window.location.host}/state`;
     let intervalHandler;
 
-    let socket = this.get('socketService').socketFor(location);
+    let socket = this.get('socketService').socketFor(this.location);
     this.set('socketRef', socket);
 
     socket.on('open', () => {
@@ -38,5 +41,8 @@ export default Ember.Controller.extend({
         this.set('content.cpu.system', data.cpu.system);
       }
     }, this);
+  },
+  willDestroyElement() {
+    this.get('socketService').closeSocketFor(this.location);
   }
 });
