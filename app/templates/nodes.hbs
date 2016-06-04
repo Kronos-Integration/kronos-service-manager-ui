@@ -1,5 +1,5 @@
 <div class="ui four cards">
-  {{#each-in content as |name node|}}
+  {{#each content as |node|}}
   <div class="card">
     <div class="content">
       <div class="header">{{#link-to 'node' node}} {{node.id}} @ {{node.Node}}{{/link-to}}</div>
@@ -11,5 +11,5 @@
       </div>
     </div>
   </div>
-  {{/each-in}}
+  {{/each}}
 </div>

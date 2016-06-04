@@ -13,22 +13,25 @@ export function nodeId(params) {
   return params.node_id ? params.node_id : 'localnode';
 }
 
+const allNodesArray = [];
 const nodesById = {};
 const flowsById = {};
 const servicesById = {};
 
 export function allNodes() {
   if (nodesById.length > 0) {
-    return Promise.resolve(nodesById);
+    return Promise.resolve(allNodesArray);
   }
 
   return fetch('api/nodes').then(response => response.json()).then(nodeJson => {
     updateNodes(nodeJson);
-    return nodesById;
+    return allNodesArray;
   });
 }
 
 export function updateNodes(nodeJson) {
+  allNodesArray.length = 0;
+
   Object.keys(nodesById).forEach(n => {
     delete nodesById[n];
   });
@@ -36,6 +39,7 @@ export function updateNodes(nodeJson) {
   nodeJson.forEach(s => {
     const node = new Node(s);
     nodesById[node.id] = node;
+    allNodesArray.push(node);
   });
 }
 
