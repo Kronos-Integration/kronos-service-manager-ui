@@ -52,6 +52,10 @@ export default class Service extends EndpointsMixin(_Service) {
     }
   }
 
+  toString() {
+    return this.name;
+  }
+
   isRunning() {
     return this.state === 'running';
   }

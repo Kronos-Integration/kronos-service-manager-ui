@@ -7,6 +7,5 @@ export default Ember.Route.extend({
 
   deactivate: () => {
     //this.controller.willDestroyElement();
-    console.log(`state deactivate`);
   }
 });
