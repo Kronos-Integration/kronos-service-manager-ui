@@ -26,8 +26,7 @@ export default Ember.Controller.extend({
     }, this);
     socket.on('message', event => {
       Util.updateNodes(JSON.parse(event.data));
-      console.log(`route is: ${this.get('target')}`);
-      //this.get('target').refresh();
+      this.get('target.router').refresh();
     }, this);
   },
 

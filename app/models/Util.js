@@ -41,8 +41,6 @@ export function updateNodes(nodeJson) {
     nodesById[node.id] = node;
     allNodesArray.push(node);
   });
-
-  console.log(`allNodes: ${allNodesArray}`);
 }
 
 export function getNode(id) {
