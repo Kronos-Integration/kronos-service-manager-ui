@@ -6,7 +6,7 @@
     "ember-cli-test-loader": "0.2.2",
     "ember-qunit-notifications": "0.1.0",
     "semantic-ui": "~2.2.1",
-    "moment": ">= 2.13.0",
+    "moment": ">= 2.14.1",
     "moment-timezone": ">= 0.4.1",
     "urijs": "^1.18.1"
   }
