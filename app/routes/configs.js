@@ -1,6 +1,6 @@
 import Ember from 'ember';
-import Util from '../models/Util';
+import Configs from '../models/Configs';
 
 export default Ember.Route.extend({
-  model: () => Util.allConfigs()
+  model: () => Configs.all()
 });
