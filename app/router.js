@@ -6,6 +6,9 @@ const Router = Ember.Router.extend({
 });
 
 export default Router.map(function () {
+
+  this.route('configs');
+
   this.route('nodes');
   this.route('node', {
     path: '/node/:node_id'

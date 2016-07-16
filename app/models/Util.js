@@ -47,6 +47,10 @@ export function getNode(id) {
   return allNodes().then(all => all[id]);
 }
 
+export function allConfigs() {
+  return fetch('api/kv').then(response => response.json());
+}
+
 export function allServices() {
   if (servicesById.length > 0) {
     return Promise.resolve(servicesById);
