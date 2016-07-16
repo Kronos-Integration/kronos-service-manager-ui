@@ -1,6 +1,6 @@
 import Ember from 'ember';
-import Util from '../models/Util';
+import Nodes from '../models/Nodes';
 
 export default Ember.Route.extend({
-  model: params => Util.getNode(params.node_id)
+  model: params => Nodes.find(params.node_id)
 });

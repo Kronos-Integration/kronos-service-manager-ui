@@ -1,8 +1,8 @@
 import Ember from 'ember';
-import Util from '../models/Util';
+import Nodes from '../models/Nodes';
 
 export default Ember.Route.extend({
-  model: () => Util.allNodes(),
+  model: () => Nodes.all(),
 
   deactivate: () => {}
 });

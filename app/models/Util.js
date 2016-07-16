@@ -5,47 +5,11 @@ import fetch from 'fetch';
 import Step from './Step';
 import Flow from './Flow';
 import Service from './Service';
-import Node from './Node';
 import SendEndpoint from './SendEndpoint';
 import ReceiveEndpoint from './ReceiveEndpoint';
 
-export function nodeId(params) {
-  return params.node_id ? params.node_id : 'localnode';
-}
-
-const allNodesArray = [];
-const nodesById = {};
 const flowsById = {};
 const servicesById = {};
-
-export function allNodes() {
-  if (nodesById.length > 0) {
-    return Promise.resolve(allNodesArray);
-  }
-
-  return fetch('api/nodes').then(response => response.json()).then(nodeJson => {
-    updateNodes(nodeJson);
-    return allNodesArray;
-  });
-}
-
-export function updateNodes(nodeJson) {
-  allNodesArray.length = 0;
-
-  Object.keys(nodesById).forEach(n => {
-    delete nodesById[n];
-  });
-
-  nodeJson.forEach(s => {
-    const node = new Node(s);
-    nodesById[node.id] = node;
-    allNodesArray.push(node);
-  });
-}
-
-export function getNode(id) {
-  return allNodes().then(all => all[id]);
-}
 
 export function allServices() {
   if (servicesById.length > 0) {

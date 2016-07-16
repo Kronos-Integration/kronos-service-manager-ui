@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import Util from '../models/Util';
+import Nodes from '../models/Nodes';
 
 export default Ember.Controller.extend({
 
@@ -25,7 +25,7 @@ export default Ember.Controller.extend({
       intervalHandler = setInterval(() => socket.reconnect(), 5000);
     }, this);
     socket.on('message', event => {
-      Util.updateNodes(JSON.parse(event.data));
+      Nodes.update(JSON.parse(event.data));
       this.get('target.router').refresh();
     }, this);
   },
