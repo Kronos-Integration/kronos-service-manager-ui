@@ -21,9 +21,7 @@ export default Ember.Controller.extend({
       }));
       clearInterval(intervalHandler);
     }, this);
-    socket.on('close', () => {
-      intervalHandler = setInterval(() => socket.reconnect(), 5000);
-    }, this);
+    socket.on('close', () => intervalHandler = setInterval(() => socket.reconnect(), 5000), this);
     socket.on('message', event => {
       Nodes.update(JSON.parse(event.data));
       this.get('target.router').refresh();
