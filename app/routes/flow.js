@@ -1,6 +1,6 @@
 import Ember from 'ember';
-import Util from '../models/Util';
+import Flows from '../models/Flows';
 
 export default Ember.Route.extend({
-  model: params => Util.getFlow(params.flow_id)
+  model: params => Flows.find(params.flow_id)
 });

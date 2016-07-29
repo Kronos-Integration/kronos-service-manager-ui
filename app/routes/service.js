@@ -1,6 +1,6 @@
 import Ember from 'ember';
-import Util from '../models/Util';
+import Services from '../models/Services';
 
 export default Ember.Route.extend({
-  model: params => Util.getService(params.service_id)
+  model: params => Services.find(params.service_id)
 });

@@ -4,44 +4,11 @@ import Ember from 'ember';
 import fetch from 'fetch';
 import Step from './Step';
 import Flow from './Flow';
-import Service from './Service';
-import SendEndpoint from './SendEndpoint';
-import ReceiveEndpoint from './ReceiveEndpoint';
+import Services from './Services';
 
 const flowsById = {};
-const servicesById = {};
 
-export function allServices() {
-  if (servicesById.length > 0) {
-    return Promise.resolve(servicesById);
-  }
-
-  return fetch('api/localnode/service').then(response => response.json()).then(serviceJson => {
-    serviceJson.forEach(s => {
-      const service = new Service({
-        name: s.name,
-        state: s.state,
-        description: s.description
-      });
-
-      Object.keys(s.endpoints).forEach(en => {
-        const e = s.endpoints[en];
-        const ep = e.in ? new ReceiveEndpoint(en, service) : new SendEndpoint(en, service);
-        service.endpoints[ep.name] = ep;
-      });
-
-      servicesById[service.id] = service;
-    });
-
-    return servicesById;
-  });
-}
-
-export function getService(id) {
-  return allServices().then(all => all[id]);
-}
-
-export function allFlows() {
+export function all() {
   if (flowsById.length > 0) {
     return flowsById;
   }
@@ -51,7 +18,7 @@ export function allFlows() {
   ));
 }
 
-export function getFlow(id) {
+export function find(id) {
   const flow = flowsById[id];
 
   if (flow) {
@@ -154,7 +121,7 @@ export function createFromJSON(data) {
         if (m) {
           const sn = m[1];
           const en = m[2];
-          promises.push(getService(sn).then(service => makeServiceEndpoint(en, service)));
+          promises.push(Services.find(sn).then(service => makeServiceEndpoint(en, service)));
         }
       }
     }
