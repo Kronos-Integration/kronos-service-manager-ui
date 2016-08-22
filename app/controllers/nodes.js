@@ -12,16 +12,16 @@ export default Ember.Controller.extend({
   init() {
     this._super.apply(this, arguments);
 
-    let intervalHandler;
+    //let intervalHandler;
     let socket = this.get('socketService').socketFor(this.location);
 
     socket.on('open', () => {
       socket.send(JSON.stringify({
         update: true
       }));
-      clearInterval(intervalHandler);
+      //clearInterval(intervalHandler);
     }, this);
-    socket.on('close', () => intervalHandler = setInterval(() => socket.reconnect(), 5000), this);
+    //socket.on('close', () => intervalHandler = setInterval(() => socket.reconnect(), 5000), this);
     socket.on('message', event => {
       Nodes.update(JSON.parse(event.data));
       this.get('target.router').refresh();

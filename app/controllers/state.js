@@ -12,7 +12,7 @@ export default Ember.Controller.extend({
   init() {
     this._super.apply(this, arguments);
 
-    let intervalHandler;
+    //let intervalHandler;
 
     let socket = this.get('socketService').socketFor(this.location);
     this.set('socketRef', socket);
@@ -22,11 +22,11 @@ export default Ember.Controller.extend({
       socket.send(JSON.stringify({
         autoUpdate: 5000
       }));
-      clearInterval(intervalHandler);
+      //clearInterval(intervalHandler);
     }, this);
     socket.on('close', () => {
       this.set('content.connected', false);
-      intervalHandler = setInterval(() => socket.reconnect(), 5000);
+      //intervalHandler = setInterval(() => socket.reconnect(), 5000);
     }, this);
     socket.on('message', event => {
       const data = JSON.parse(event.data);
