@@ -4,7 +4,7 @@ import fetch from 'fetch';
 import Node from './Node';
 
 export function nodeId(params) {
-  return params.node_id ? params.node_id : 'localnode';
+  return params.node_id !== undefined ? params.node_id : 'localnode';
 }
 
 const allNodesArray = [];
@@ -24,9 +24,7 @@ export function all() {
 export function update(nodeJson) {
   allNodesArray.length = 0;
 
-  Object.keys(nodesById).forEach(n => {
-    delete nodesById[n];
-  });
+  Object.keys(nodesById).forEach(n => delete nodesById[n]);
 
   nodeJson.forEach(s => {
     const node = new Node(s);
