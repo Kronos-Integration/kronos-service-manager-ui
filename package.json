@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/Kronos-Integration/kronos-service-manager-ui#readme",
   "engines": {
-    "node": ">=6.2.2"
+    "node": ">=6.4"
   },
   "license": "BSD-2-Clause",
   "contributors": [
