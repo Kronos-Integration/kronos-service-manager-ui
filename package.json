@@ -32,7 +32,7 @@
     "email": "markus.felten@gmx.de"
   }],
   "devDependencies": {
-    "WiredPanels": "^1.0.0",
+    "WiredPanels": "git+https://github.com/Lichtso/WiredPanels.git#babel",
     "broccoli-asset-rev": "^2.4.6",
     "ember-browserify": "^1.1.13",
     "ember-cli": "^2.8.0",
