@@ -7,6 +7,6 @@
     "semantic-ui": "~2.2.6",
     "moment": ">= 2.16.0",
     "moment-timezone": ">= 0.5.9",
-    "urijs": "^1.18.2"
+    "urijs": "^1.18.3"
   }
 }
