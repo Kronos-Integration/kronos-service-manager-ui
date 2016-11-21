@@ -59,7 +59,7 @@
     "ember-load-initializers": "^0.5.1",
     "ember-moment": "6.1.0",
     "ember-resolver": "^2.1.0",
-    "ember-websockets": "6.1.0",
+    "ember-websockets": "6.2.0",
     "loader.js": "^4.0.11",
     "mocha": "3.1.2",
     "mock-socket": "6.0.1",
