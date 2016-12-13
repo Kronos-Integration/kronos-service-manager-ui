@@ -62,7 +62,7 @@
     "ember-websockets": "6.2.2",
     "loader.js": "^4.1.0",
     "mocha": "3.2.0",
-    "mock-socket": "6.0.3",
+    "mock-socket": "6.0.4",
     "semantic-release": "6.3.2"
   }
 }
