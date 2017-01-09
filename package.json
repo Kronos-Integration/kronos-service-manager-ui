@@ -24,15 +24,18 @@
     "node": ">=6.5"
   },
   "license": "BSD-2-Clause",
-  "contributors": [{
-    "name": "Torsten Link",
-    "email": "torstenlink@gmx.de"
-  }, {
-    "name": "Markus Felten",
-    "email": "markus.felten@gmx.de"
-  }],
+  "contributors": [
+    {
+      "name": "Torsten Link",
+      "email": "torstenlink@gmx.de"
+    },
+    {
+      "name": "Markus Felten",
+      "email": "markus.felten@gmx.de"
+    }
+  ],
   "devDependencies": {
-    "WiredPanels": "git+https://github.com/arlac77/WiredPanels.git",
+    "WiredPanels": "git+https://github.com/arlac77/WiredPanels.git#bc661a67bccf64d275e589436810a184437cde9d",
     "broccoli-asset-rev": "^2.5.0",
     "ember-browserify": "^1.1.13",
     "ember-cli": "^2.10.0",
@@ -48,7 +51,7 @@
     "ember-cli-inject-live-reload": "^1.4.1",
     "ember-cli-jshint": "^2.0.1",
     "ember-cli-moment-shim": "^3.0.1",
-    "ember-cli-qunit": "^3.0.4",
+    "ember-cli-qunit": "^3.1.0",
     "ember-cli-release": "^0.2.9",
     "ember-cli-semantic-ui": "^0.8.1",
     "ember-cli-sri": "^2.1.1",
@@ -57,7 +60,7 @@
     "ember-export-application-global": "^1.1.1",
     "ember-fetch": "1.4.0",
     "ember-load-initializers": "^0.6.3",
-    "ember-moment": "^7.2.0",
+    "ember-moment": "^7.3.0",
     "ember-resolver": "^2.1.1",
     "ember-websockets": "6.3.0",
     "loader.js": "^4.1.0",
