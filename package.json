@@ -63,7 +63,7 @@
     "ember-moment": "^7.3.0",
     "ember-resolver": "^4.1.0",
     "ember-websockets": "7.0.2",
-    "loader.js": "^4.2.2",
+    "loader.js": "^4.3.0",
     "mocha": "3.2.0",
     "mock-socket": "6.0.4",
     "semantic-release": "6.3.2"
