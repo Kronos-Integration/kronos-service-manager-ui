@@ -14,6 +14,8 @@
 
 # Kronos-service-manager-ui
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Kronos-Integration/kronos-service-manager-ui.svg)](https://greenkeeper.io/)
+
 ## Installation
 
 * `git clone <repository-url>` this repository
