@@ -64,7 +64,7 @@
     "ember-resolver": "^4.1.0",
     "ember-websockets": "7.0.2",
     "loader.js": "^4.4.0",
-    "mocha": "3.3.0",
+    "mocha": "3.4.1",
     "mock-socket": "6.0.4",
     "semantic-release": "6.3.6"
   }
