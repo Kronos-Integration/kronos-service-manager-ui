@@ -36,7 +36,7 @@
   ],
   "devDependencies": {
     "WiredPanels": "git+https://github.com/arlac77/WiredPanels.git#bc661a67bccf64d275e589436810a184437cde9d",
-    "broccoli-asset-rev": "^2.5.0",
+    "broccoli-asset-rev": "^2.6.0",
     "ember-browserify": "^1.2.0",
     "ember-cli": "^2.14.2",
     "ember-cli-app-version": "^3.0.0",
