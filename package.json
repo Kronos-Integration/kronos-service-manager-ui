@@ -61,7 +61,7 @@
     "ember-fetch": "3.2.9",
     "ember-load-initializers": "^1.0.0",
     "ember-moment": "^7.4.1",
-    "ember-resolver": "^4.2.4",
+    "ember-resolver": "^4.4.0",
     "ember-websockets": "7.0.4",
     "loader.js": "^4.6.0",
     "mocha": "3.5.0",
