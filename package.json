@@ -47,7 +47,7 @@
     "ember-cli-deploy-build": "1.1.2",
     "ember-cli-deploy-rsync": "0.0.5",
     "ember-cli-htmlbars": "^4.0.0",
-    "ember-cli-htmlbars-inline-precompile": "^1.0.2",
+    "ember-cli-htmlbars-inline-precompile": "^2.0.0",
     "ember-cli-inject-live-reload": "^1.7.0",
     "ember-cli-jshint": "^2.0.1",
     "ember-cli-moment-shim": "^3.5.0",
